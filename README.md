@@ -1,21 +1,28 @@
 # Lost-in-Routing
 Multilingual LLM query routing: evaluating language-aware routers for cost-efficient small-vs-large model selection.
 
-## Setup
+## Prerequisite
 
+Create the Conda environment *once*:
 ```bash
 conda env create -f environment.yml
+```
+
+To update the environment, use:
+```bash
+conda env update -f environment.yml --prune
+```
+
+## Setup
+
+Activate the environment:
+```bash
 conda activate router
 ```
 To deactivate an active environment, use:
 
 ```bash
 conda deactivate
-```
-To update the environment:
-
-```bash
-conda env update -f environment.yml --prune
 ```
 
 ## Workflow
