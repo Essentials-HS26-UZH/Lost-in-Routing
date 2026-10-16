@@ -3,18 +3,19 @@
 > In this file, we can document our key decisions for the project. The current recommendations should be discussed and may be changed.
 
 ## 1. Datasets (Multilingual & Deterministic)
+* **V1 MGSM:** Multi-step math reasoning across 10 diverse languages. Format: Exact-match numerical.
 
-* **Global-MMLU:** General knowledge (57 subjects) across 42 languages. Format: 4-option MCQs. Highly reliable for cross-lingual knowledge.
+* **Alt. Global-MMLU:** General knowledge (57 subjects) across 42 languages. Format: 4-option MCQs. Highly reliable for cross-lingual knowledge.
 
-* **Belebele:** Reading comprehension across 122 languages. Format: 4-option MCQs. Features parallel text, acting as an excellent control variable.
-
-* **MGSM:** Multi-step math reasoning across 10 diverse languages. Format: Exact-match numerical.
+* **Alt. Belebele:** Reading comprehension across 122 languages. Format: 4-option MCQs. Features parallel text, acting as an excellent control variable.
 
 ## 2. Language Selection (Ensuring dataset overlap)
 
-* **High-Resource:** **Spanish (es)**. Massive pre-training representation; provides a strong baseline where the small model is frequently sufficient.
+* **High-Resource:** **V1 English (en)**. Massive pre-training representation; provides a strong baseline where the small model is frequently sufficient.
 
-* **Low-Resource:** **Swahili (sw)**. Underrepresented in pre-training corpora; provides a rigorous test for the router to default to the larger model.
+* **Alt Spanish**
+
+* **Low-Resource:** **V1 Swahili (sw)**. Underrepresented in pre-training corpora; provides a rigorous test for the router to default to the larger model.
 
 ## 3. Model Selection (Same-family to isolate scale)
 
@@ -22,11 +23,14 @@
 
 * **Option B: Llama-3.1 Family** (`Llama-3.1-8B-Instruct` & `Llama-3.1-70B-Instruct`). The most widely adopted open-weight baseline in academic literature.
 
+=> Where to run the big model: ICU GPUs or Service Provider
+Mail to Igli to ask the recommendations: Leonora
+
 ## 4. Evaluation Metrics
 
 *Reference: Metrics are formalized based on "LLMRouterBench-metrics-suite.md".*
 
-To evaluate the language-aware router against baselines like the Best Single Model ($B$), Random Router ($R$), and the hindsight Oracle ($O$), we will track the following core metrics:
+To evaluate the language-aware router against baselines like the Best Single Model (B), Random Router (R), and the hindsight Oracle (O), we will track the following core metrics:
 
 * **Performance Metrics:**
   * **Average Accuracy ($\text{AvgAcc}$):** The overall mean correctness across all evaluated language subsets.
