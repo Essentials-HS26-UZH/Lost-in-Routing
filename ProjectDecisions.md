@@ -3,28 +3,43 @@
 > In this file, we can document our key decisions for the project. The current recommendations should be discussed and may be changed.
 
 ## 1. Datasets (Multilingual & Deterministic)
-* **V1 MGSM:** Multi-step math reasoning across 10 diverse languages. Format: Exact-match numerical.
 
-* **Alt. Global-MMLU:** General knowledge (57 subjects) across 42 languages. Format: 4-option MCQs. Highly reliable for cross-lingual knowledge.
+First Choice:
+* **MGSM:** Multi-step math reasoning across 10 diverse languages. Format: Exact-match numerical.
 
-* **Alt. Belebele:** Reading comprehension across 122 languages. Format: 4-option MCQs. Features parallel text, acting as an excellent control variable.
+Alternatives:
+* **Global-MMLU:** General knowledge (57 subjects) across 42 languages. Format: 4-option MCQs. Highly reliable for cross-lingual knowledge.
+
+* **Belebele:** Reading comprehension across 122 languages. Format: 4-option MCQs. Features parallel text, acting as an excellent control variable.
 
 ## 2. Language Selection (Ensuring dataset overlap)
 
-* **High-Resource:** **V1 English (en)**. Massive pre-training representation; provides a strong baseline where the small model is frequently sufficient.
+First Iteration:
 
-* **Alt Spanish**
+* **High-Resource:** **English (en)**. Massive pre-training representation; provides a strong baseline where the small model is frequently sufficient.
 
-* **Low-Resource:** **V1 Swahili (sw)**. Underrepresented in pre-training corpora; provides a rigorous test for the router to default to the larger model.
+* **Low-Resource:** **Swahili (sw)**. Underrepresented in pre-training corpora; provides a rigorous test for the router to default to the larger model.
+
+Potential Second Iteration:
+
+* **Spanish** and **Bengali**
 
 ## 3. Model Selection (Same-family to isolate scale)
 
-* **Option A: Qwen2.5 Family** (`Qwen2.5-7B-Instruct` & `Qwen2.5-72B-Instruct`). Currently holds state-of-the-art open-weight performance for multilingual tasks.
+First Choice:
 
-* **Option B: Llama-3.1 Family** (`Llama-3.1-8B-Instruct` & `Llama-3.1-70B-Instruct`). The most widely adopted open-weight baseline in academic literature.
+* **Llama-3.1 Family** (`Llama-3.1-8B-Instruct` & `Llama-3.1-70B-Instruct`). The most widely adopted open-weight baseline in academic literature.
 
-=> Where to run the big model: ICU GPUs or Service Provider
-Mail to Igli to ask the recommendations: Leonora
+Alternative:
+
+* **Qwen2.5 Family** (`Qwen2.5-7B-Instruct` & `Qwen2.5-72B-Instruct`). Currently holds state-of-the-art open-weight performance for multilingual tasks.
+
+Open Question:
+
+* Where can we run the big model (70B)?
+  * Potential Solution: Running the models through an API with caching outputs (find provider!)
+  * Alternative: Get access to GPU cluster at university (Sina checks this)
+
 
 ## 4. Evaluation Metrics
 
