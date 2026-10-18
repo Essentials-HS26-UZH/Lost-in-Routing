@@ -1,6 +1,8 @@
 from pathlib import Path
-import pandas as pd # type: ignore
-from datasets import load_dataset # type: ignore
+
+import pandas as pd  # type: ignore
+from datasets import load_dataset  # type: ignore
+
 
 def load_and_preprocess_belebele():
     """
