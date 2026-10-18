@@ -5,12 +5,14 @@
 ## 1. Datasets (Multilingual & Deterministic)
 
 First Choice:
-* **MGSM:** Multi-step math reasoning across 10 diverse languages. Format: Exact-match numerical.
+* **Belebele:** Reading comprehension across 122 languages. Format: 4-option MCQs. Features parallel text, acting as an excellent control variable. This dataset provides 900 parallel questions, which should be enough to train the two llm routers.
 
 Alternatives:
 * **Global-MMLU:** General knowledge (57 subjects) across 42 languages. Format: 4-option MCQs. Highly reliable for cross-lingual knowledge.
 
-* **Belebele:** Reading comprehension across 122 languages. Format: 4-option MCQs. Features parallel text, acting as an excellent control variable.
+Not Feasible:
+* **MGSM:** Multi-step math reasoning across 10 diverse languages. Format: Exact-match numerical. This dataset only contains 250 parallel Questions, which is too little to propperly train a llm router. The dataset is meant for evaluation only and does not provide enough data for training.
+
 
 ## 2. Language Selection (Ensuring dataset overlap)
 
@@ -22,7 +24,7 @@ First Iteration:
 
 Potential Second Iteration:
 
-* **Spanish** and **Bengali**
+* there are many options for additional high and low resource languages in BeleBele, we could just choose two.
 
 ## 3. Model Selection (Same-family to isolate scale)
 
