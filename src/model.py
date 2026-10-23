@@ -4,7 +4,7 @@ Run language CSVs through a model.
 
 Prerequisites: .env file with OPENROUTER_API_KEY set to your OpenRouter API key.
 
-Usage: python src\model.py --which big|small --input [src\belebele_LAN_processed.csv ...] [--limit 20]
+Usage: python src/model.py --which big|small --input [src/belebele_LAN_processed.csv ...] [--limit 20]
 
 """
 
