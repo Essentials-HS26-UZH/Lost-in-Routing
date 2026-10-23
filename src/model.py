@@ -51,11 +51,11 @@ def ask(client, model, prompt):
     }
  
  
-def get_answer(client, model, prompt, cache, cache_path):
-    """Return the model's answer, from the cache if possible."""
+def get_answer(client, model, prompt, cache, cache_path, info=None):
+    """Return the model's answer, from the cache if possible. `info` is extra readable data."""
     key = hashlib.sha256((model + prompt).encode("utf-8")).hexdigest()
     if key not in cache:
-        cache[key] = {"key": key, "model": model, **ask(client, model, prompt)}
+        cache[key] = {"key": key, "model": model, **(info or {}), **ask(client, model, prompt)}
         with open(cache_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(cache[key], ensure_ascii=False) + "\n")
     return cache[key]
@@ -88,10 +88,10 @@ def make_result(row, answer):
  
  
 def save_results(results, which, path):
-    """Saved next to this script (src/), e.g. oracle_en_big.csv."""
+    """Saved next to this script (src/), e.g. prediction_en_big.csv."""
     lang = os.path.basename(path).split("_")[1]  # belebele_en_processed.csv -> en
     folder = os.path.dirname(os.path.abspath(__file__))
-    out_path = os.path.join(folder, f"oracle_{lang}_{which}.csv")
+    out_path = os.path.join(folder, f"prediction_{lang}_{which}.csv")
     with open(out_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(results[0].keys()))
         writer.writeheader()
@@ -103,7 +103,8 @@ def run_file(path, which, limit, client, model, cache, cache_path):
     rows = read_rows(path, limit)
     results = []
     for i, row in enumerate(rows, 1):
-        answer = get_answer(client, model, row["formatted_prompt"], cache, cache_path)
+        info = {"language": row["language"], "question_id": row["question_id"]}
+        answer = get_answer(client, model, row["formatted_prompt"], cache, cache_path, info)
         results.append(make_result(row, answer))
         print(f"{path}: {i}/{len(rows)}", end="\r")
  
