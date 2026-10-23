@@ -93,7 +93,8 @@ if __name__ == "__main__":
     # Execute the preprocessing.
     processed_languages = load_and_preprocess_belebele()
 
-    output_directory = Path(__file__).resolve().parent
+    output_directory = Path(__file__).resolve().parent / "data"
+    output_directory.mkdir(exist_ok=True)
 
     # Save one dataset per language.
     for language_code, language_config in LANGUAGES.items():

@@ -4,7 +4,7 @@ Run language CSVs through a model.
 
 Prerequisites: .env file with OPENROUTER_API_KEY set to your OpenRouter API key.
 
-Usage: python src/model.py --which big|small --input [src/belebele_LAN_processed.csv ...] [--limit 20]
+Usage: python src/model.py --which big|small --input [src/data/belebele_LAN_processed.csv ...] [--limit 20]
 
 """
 
@@ -14,6 +14,7 @@ import hashlib
 import json
 import os
 import re
+from pathlib import Path
  
 from dotenv import dotenv_values
 from openai import OpenAI
@@ -88,15 +89,16 @@ def make_result(row, answer):
  
  
 def save_results(results, which, path):
-    """Saved next to this script (src/), e.g. prediction_en_big.csv."""
+    """Save results in the repository's data directory."""
     lang = os.path.basename(path).split("_")[1]  # belebele_en_processed.csv -> en
-    folder = os.path.dirname(os.path.abspath(__file__))
-    out_path = os.path.join(folder, f"prediction_{lang}_{which}.csv")
+    folder = Path(__file__).resolve().parent / "data"
+    folder.mkdir(exist_ok=True)
+    out_path = folder / f"prediction_{lang}_{which}.csv"
     with open(out_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(results[0].keys()))
         writer.writeheader()
         writer.writerows(results)
-    return out_path
+    return str(out_path)
  
  
 def run_file(path, which, limit, client, model, cache, cache_path):
@@ -123,7 +125,8 @@ def main():
  
     base_url, model, api_key = SETTINGS[args.which]
     client = OpenAI(base_url=base_url, api_key=api_key, max_retries=5)
-    cache_path = f"cache_{args.which}.jsonl"
+    cache_path = str(Path(__file__).resolve().parent / "data" / f"cache_{args.which}.jsonl")
+    Path(cache_path).parent.mkdir(exist_ok=True)
     cache = load_cache(cache_path)
  
     for path in args.input:
