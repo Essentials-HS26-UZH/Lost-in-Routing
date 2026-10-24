@@ -14,7 +14,7 @@ KEY = dotenv_values().get("OPENROUTER_API_KEY") or ""
 # (base_url, model, api_key) - change the model names here (e.g. to a free model for a test)
 SETTINGS = {
     "big": ("https://openrouter.ai/api/v1", "meta-llama/llama-3.1-70b-instruct", KEY),
-    "small": ("http://localhost:11434/v1", "llama3.1:latest", "ollama"), # 8B is the latest version, confirm under http://localhost:11434/api/tags
+    "small": ("http://localhost:11434/v1", "llama3.1:8b", "ollama"), # after installing and running Ollama, confirm model under http://localhost:11434/api/tags
 }
  
  
