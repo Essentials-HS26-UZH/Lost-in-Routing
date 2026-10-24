@@ -1,0 +1,1351 @@
+question_id,language,gold,pred,correct,prompt_tokens,completion_tokens,raw_output
+q_0,English,1,1,1,254,268,"To answer this question, let's analyze the passage and the options provided.
+
+The passage advises the reader to:
+
+* Keep their hand relaxed while playing
+* Avoid extraneous motion with their fingers
+* Use the bellows with more pressure or speed to get extra volume, rather than hitting the keys with force
+
+Now, let's examine the options:
+
+1) For additional volume, increase the force with which you hit the keys - This is actually the opposite of what the passage advises. The passage states that there's no need to hit the keys with a lot of force for extra volume, and instead recommends using the bellows with more pressure or speed.
+
+2) Keep unnecessary movement to a minimum in order to preserve your stamina - This is in line with the passage's advice to avoid extraneous motion with your fingers.
+
+3) Be mindful of hitting the notes while maintaining a relaxed hand - This is also consistent with the passage's advice to keep your hand relaxed while still hitting all the notes correctly.
+
+4) Increase the speed with which you operate the bellows to achieve extra volume - This is in line with the passage's advice to use the bellows with more pressure or speed to get extra volume.
+
+Based on this analysis, the correct answer is the option that contradicts the passage's advice.
+
+<answer>1</answer>"
+q_1,English,1,1,1,215,212,"
+
+To answer this question, let's break down the information provided in the passage.
+
+1. The passage advises against using a lot of force to hit the keys for extra volume, which suggests that force is not the correct answer. This eliminates option 2.
+
+2. The passage mentions that to get extra volume on the accordion, you use the bellows with more pressure or speed. This directly supports option 1, as it mentions ""more speed"" as a method to increase volume.
+
+3. The passage does not mention anything about ""less pressure"" being a way to increase volume. In fact, it suggests the opposite - using the bellows with ""more pressure"" to increase volume. This eliminates option 3.
+
+4. The passage does mention ""less finger motion"" as a way to conserve energy, but it does not relate this to increasing volume. This eliminates option 4.
+
+Therefore, the correct answer is the one that aligns with the passage's advice on how to increase volume on the accordion.
+
+<answer>1</answer>"
+q_2,English,2,2,1,249,279,"To answer this question, let's break it down step by step:
+
+1. **Understanding Overscan**: The passage explains that overscan is a common problem when converting movies to DVD format. It's a feature of most televisions designed to ensure the image covers the whole screen.
+
+2. **Identifying the Purpose of Overscan**: The key sentence in the passage is, ""This is made to ensure that the image covers the whole screen."" This indicates the primary reason for cutting the borders of images on television.
+
+3. **Evaluating the Options**:
+   - **Option 1**: ""To allow for subtitles"" - This is not mentioned as a reason for cutting the borders in the passage.
+   - **Option 2**: ""So the image fills the entire screen"" - This directly aligns with the explanation provided in the passage.
+   - **Option 3**: ""To allow for simple conversion into other formats"" - The passage does not mention this as a reason for cutting the borders.
+   - **Option 4**: ""To cut subtitles too close to the bottom"" - This is actually a consequence of overscan, not the reason for it.
+
+4. **Conclusion**: Based on the information provided in the passage, the correct answer is the one that matches the reason given for why images on television have their borders cut.
+
+<answer>2</answer>"
+q_3,English,2,2,1,254,218,"To answer this question, let's break down the information provided in the passage and analyze the options given.
+
+1. **An image that doesn’t fill the entire screen**: The passage actually explains that the image covers the whole screen due to overscan, so this option doesn't align with the problem described.
+
+2. **Partially cut subtitles**: The passage mentions that if the video had subtitles too close to the bottom, they won't be fully shown due to overscan. This directly relates to the problem of converting a movie to DVD format.
+
+3. **An image that fills the entire screen**: This is actually a result of overscan, not a problem encountered when converting a movie to DVD format.
+
+4. **Cut borders**: While the passage does mention that the DVD's borders will most likely be cut too, the focus is on the issue this causes, specifically with subtitles, rather than the cutting of borders itself being the primary problem.
+
+Given the analysis, the correct answer focuses on the consequence of overscan on subtitles during the conversion process.
+
+<answer>2</answer>"
+q_4,English,3,3,1,241,101,"To answer this question, we need to identify the location of the British garrison mentioned in the passage.
+
+Step 1: Read the passage and look for the phrase ""British garrison"".
+Step 2: Identify the location associated with the British garrison.
+
+According to the passage, ""General John Cadwalder would launch a diversionary attack against the British garrison at Bordentown...""
+
+Therefore, the location of the British garrison is Bordentown.
+
+<answer>3</answer>"
+q_5,English,4,4,1,276,105,"
+
+To answer this question, we need to look at the passage and identify whose signature appeared on the handwritten draft. According to the passage, the handwritten draft was signed by the President of Congress, John Hancock, and the Secretary, Charles Thomson.
+
+However, the question asks for a single person's signature, and among the options provided, only one of the signers is listed. Therefore, the correct answer is the one that corresponds to one of the signers mentioned in the passage.
+
+<answer>4</answer>"
+q_6,English,3,3,1,284,159,"
+
+To determine where a Dunlap broadside arrived last, let's look at the timeline provided in the passage:
+
+- July 4: The document was adopted by Congress.
+- July 4 (night): 150 to 200 copies (Dunlap broadsides) were made at Dunlap's printing shop.
+- July 6: A copy was sent to George Washington.
+- July 8: The first public reading was in the yard of Independence Hall.
+- July 9: A copy was read to Washington's troops in New York.
+- August 10: A copy reached London.
+
+Given this timeline, we can see that the Dunlap broadside arrived last in London, as it is the latest date mentioned in the passage.
+
+<answer>3</answer>"
+q_7,English,1,1,1,285,194,"
+
+To answer this question, let's break down the information provided in the passage step by step:
+
+1. The passage mentions that Stark's men took positions along the fence on the north end of the Colonist's position. This directly answers the question about the location of Colonel Stark's troops.
+
+2. While it's true that the fence was extended to the water's edge on a small beach, this is not described as the primary position of Stark's troops but rather as an extension of their defensive line.
+
+3. The northeast of the peninsula is mentioned in relation to the low tide and the extension of the fence, not specifically as the location of Stark's troops.
+
+4. The stake placed 100 feet in front of the fence is mentioned as a marker for when to fire, not as the position of Stark's troops.
+
+Given this analysis, the correct answer is the one that directly states the position of Stark's troops.
+
+<answer>1</answer>"
+q_8,English,3,3,1,286,172,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage mentions that the Colonists called for reinforcements, and troops, including Stark's men, took positions along the fence on the north end of the Colonist's position.
+2. It then mentions that when low tide opened a gap along the Mystic River, Stark's men extended the fence with a short stone wall to the north.
+3. The passage does not mention that the fence was extended while the Colonists called for reinforcements (option 1) or while troops assumed forward positions (option 4).
+4. It also does not mention that the fence was extended after the regulars passed the stake (option 2), as the stake was placed after the fence was extended.
+
+Based on this analysis, the correct answer is:
+
+<answer>3</answer>"
+q_9,English,4,4,1,252,152,"To answer this question, let's analyze the passage step by step:
+
+1. The passage mentions that Ancient China had a unique way of showing different time periods through dynasties.
+2. It states that between each dynasty was an unstable age of divided provinces.
+3. The passage specifically highlights the Three Kingdoms epoch as one of these periods, taking place between the Han and the Jin Dynasty.
+4. It describes the Three Kingdoms era as one of the bloodiest eras in Ancient China's history, with thousands of people dying in fierce warfare.
+
+Based on this analysis, the correct answer is the one that corresponds to the Three Kingdoms era, which is described as one of China's most violent eras.
+
+<answer>4</answer>"
+q_10,English,2,2,1,220,225,"To answer this question, let's break down the information provided in the passage step by step:
+
+1. **Identify the key elements of the nomadic phase**: The passage mentions that during the nomadic phase, army ants march at night and stop to camp during the day. This already eliminates options 1 and 4 because they contradict this information.
+
+2. **Understand the reason for entering the nomadic phase**: The passage states that the colony begins a nomadic phase when available food has decreased. This directly supports option 2, indicating that a low supply of food is a reason for entering this phase.
+
+3. **Analyze the duration and nesting behavior**: The passage mentions that each nomadic rampage or march lasts for approximately 17 days and that the colony makes temporary nests that are changed every day. This information eliminates option 3 because it suggests that nests are changed daily, not after 17 days.
+
+Given this analysis, the correct answer is the one that aligns with the information provided in the passage about why an army ant colony enters a nomadic phase.
+
+<answer>2</answer>"
+q_11,English,3,3,1,225,220,"To answer this question, let's break down the information provided in the passage about the nesting habits of army ant colonies during the nomadic phase:
+
+1. The passage states that during the nomadic phase, army ants ""stop to camp during the day."" This implies that they do not build nests during the night but rather rest or camp during the day.
+
+2. It mentions that ""the colony makes temporary nests that are changed every day."" This directly contradicts the idea that they march for 17 days without nesting, as it indicates they do nest, albeit temporarily and in a location that changes daily.
+
+3. The passage explicitly states that the colony ""makes temporary nests that are changed every day."" This directly supports the statement that they change nests daily.
+
+4. The passage indicates that the nests are temporary and changed every day, which contradicts the idea that they use the same nests for the duration of the phase.
+
+Given this analysis, the correct answer is the one that aligns with the information provided in the passage about the daily change of temporary nests.
+
+<answer>3</answer>"
+q_12,English,3,3,1,210,326,"
+
+To answer this question, let's break down the information provided in the passage.
+
+1. **Endogenous cycles** are mentioned as something that observed rhythms in physiology and behavior often depend on. However, the passage does not explicitly state that endogenous cycles continue despite the presence of external cues; it mentions their necessity for certain rhythms but does not address their persistence in the face of external cues.
+
+2. **Periodic rhythms** are described as not being simply responses to external periodic cues, indicating they can occur independently of external cues. However, the passage does not explicitly state that they continue despite the presence of external cues; it highlights their existence without external cues.
+
+3. **Biological clocks** are described as self-sustaining oscillators that will continue a period of free-running cycling even in the absence of external cues. This implies that biological clocks can function independently of external cues, but the passage does not directly state that they continue despite the presence of external cues. However, the emphasis on ""free-running"" suggests a capacity to operate regardless of external influences.
+
+4. **Observed rhythms** are mentioned as often depending on endogenous cycles and biological clocks. The passage does not directly address whether observed rhythms continue despite the presence of external cues.
+
+Given the information, the best interpretation is that biological clocks are the entities most clearly described as capable of functioning independently of external cues, which implies they can continue their operation despite the presence of such cues. However, the passage's wording about ""free-running"" in the absence of external cues is the closest to suggesting continuation despite external cues.
+
+<answer>3</answer>"
+q_13,English,4,4,1,180,294,"To answer this question, let's break it down step by step:
+
+1. **Understanding the terms**:
+   - **Monomorphic**: Refers to a population where all individuals are identical with regard to a particular phenotypic trait.
+   - **Polymorphic**: Describes a population where individuals show several variants of a particular trait.
+   - **Organisms**: A general term for living things, not specific to the variation of traits.
+   - **Species**: A group of living organisms consisting of similar individuals that can exchange genes or interbreed.
+
+2. **Identifying the key concept in the question**: The question asks about individuals that display variances of a certain phenotypic trait. This means we are looking for a term that describes diversity or variation within a trait.
+
+3. **Matching the concept to the definitions**:
+   - **Monomorphic** does not fit because it describes a lack of variation.
+   - **Organisms** is too general and does not address the concept of variation.
+   - **Species** refers to a broader classification and does not specifically address variation within a trait.
+   - **Polymorphic** directly addresses the concept of individuals showing several variants of a particular trait.
+
+4. **Conclusion**: Based on the definitions and the key concept in the question, the term that describes individuals that display variances of a certain phenotypic trait is **Polymorphic**.
+
+<answer>4</answer>"
+q_14,English,2,2,1,179,208,"To answer this question, let's break it down step by step:
+
+1. **Understanding the terms**:
+   - **Monomorphic**: Refers to a population where all individuals are identical with regard to a particular phenotypic trait.
+   - **Population**: A collection of organisms of a particular species within a given geographic area.
+   - **Species**: A group of living organisms consisting of similar individuals that can exchange genes or interbreed.
+   - **Polymorphic**: Describes a population where individuals show several variants of a particular trait.
+
+2. **Identifying the key concept in the question**: The question asks for the term that describes organisms that occupy a particular area.
+
+3. **Matching the concept with the definitions**:
+   - The term that directly refers to organisms within a specific geographic area is **Population**.
+
+4. **Selecting the correct answer**:
+   - Based on the definition, the correct term for organisms that occupy a particular area is **Population**.
+
+<answer>2</answer>"
+q_15,English,3,3,1,201,238,"To answer this question, let's analyze the options step by step in relation to the definition of nature-based tourism provided in the passage.
+
+1. **Hiking to a waterfall**: This activity involves visiting a natural area for the purpose of enjoying the scenery, which aligns with the definition of nature-based tourism.
+
+2. **Photographing wildflowers**: This activity also fits the definition as it involves enjoying and capturing the natural beauty of plant life in its natural habitat.
+
+3. **Visiting a science museum**: While a science museum might have exhibits related to nature and ecosystems, the activity itself does not involve visiting natural areas for the purpose of enjoying the scenery or wildlife in their natural habitats. This seems to diverge from the definition provided.
+
+4. **Fly fishing**: This is an activity that involves interacting with natural environments (like rivers or lakes) for recreational purposes, which aligns with the definition of nature-based tourism.
+
+Considering the options, the activity that does not fit the definition of nature-based tourism as described in the passage is visiting a science museum, as it does not involve direct interaction with natural areas or wildlife in their natural habitats.
+
+<answer>3</answer>"
+q_16,English,2,2,1,212,290,"To answer this question, let's break it down step by step:
+
+1. **Understanding the passage**: The passage describes a daily scenario where people travel from small country towns to their workplaces using cars, highlighting a system of transportation that is interconnected and reliant on private vehicles.
+
+2. **Identifying the key elements**: The key elements here are the daily commute, the use of cars, and the impact on the environment (specifically, the biosphere).
+
+3. **Analyzing the options**:
+   - **Option 1 (Work destinations)**: While work destinations are mentioned, they are not described as the basis of the transport system but rather as a reason for the commute.
+   - **Option 2 (Private cars)**: This option directly aligns with the description of the transport system in the passage, which emphasizes the use of private cars.
+   - **Option 3 (A stable biosphere)**: The passage actually indicates that the current transport system has a negative impact on the biosphere, rather than being based on it.
+   - **Option 4 (Human evolution)**: Human evolution is mentioned in the context of what the biosphere has supported over two million years, not as the basis of the transport system.
+
+4. **Conclusion**: Based on the information provided in the passage, the correct answer is the one that directly corresponds with the description of the transport system's basis.
+
+<answer>2</answer>"
+q_17,English,3,3,1,215,121,"To answer this question, let's break it down step by step:
+
+1. The passage describes the atom as consisting of a central nucleus orbited by electrons.
+2. It mentions that the nucleus consists of neutrons and protons, with protons having a positive charge and neutrons having no charge.
+3. However, the question specifically asks about the particles that orbit the nucleus, which are the electrons.
+4. According to the passage, electrons have a negative electric charge.
+
+Therefore, the correct answer is the one that states the electrons have a negative charge.
+
+<answer>3</answer>"
+q_18,English,1,1,1,229,144,"
+
+To answer this question, let's break down the information provided in the passage step by step:
+
+1. The passage mentions that the atom is composed of a central nucleus orbited by electrons.
+2. It then specifies that the nucleus itself consists of two types of particles.
+3. These two particles are identified as neutrons and protons.
+4. Additionally, it's mentioned that protons have a positive electric charge, neutrons have no charge, and electrons have a negative electric charge.
+
+Given this information, we can conclude that the nucleus is specifically made up of neutrons and protons, as electrons are described as orbiting the nucleus, not being part of it.
+
+<answer>1</answer>"
+q_19,English,3,3,1,194,203,"To find the correct answer, we need to understand what a five-bit binary number is. A binary number is made up of bits, and each bit can have a value of either 0 or 1. A five-bit binary number, therefore, is a number that consists of exactly five of these bits.
+
+Let's examine the options given:
+
+1) 1010 - This number consists of four bits, not five.
+2) 12001 - This number is not a binary number because it contains the digit 2, which is not allowed in binary (binary digits can only be 0 or 1).
+3) 10010 - This number consists of five bits, making it a valid example of a five-bit binary number.
+4) 110101 - This number consists of six bits, not five.
+
+Therefore, the correct answer is the option that represents a number made up of exactly five bits, with each bit being either 0 or 1.
+
+<answer>3</answer>"
+q_20,English,1,1,1,182,207,"
+
+To answer this question, let's analyze the given passage step by step:
+
+1. The passage mentions that binary numbers are made up of binary digits.
+2. It then explains that these binary digits are also referred to by another term.
+3. The term used to refer to binary digits, according to the passage, is ""bits.""
+
+Considering the options provided:
+
+1. Bits - This is the term mentioned in the passage as another name for binary digits.
+2. Values - While binary digits do have values (0 or 1), ""values"" is not the term used to refer to them.
+3. Jargon - This is the term used to describe the language or terminology used by a particular group, in this case, computer users. It is not a term for binary digits.
+4. Forms - This is not mentioned as a term for binary digits in the passage.
+
+Therefore, the correct answer is the term that is directly mentioned in the passage as another name for binary digits.
+
+<answer>1</answer>"
+q_21,English,2,2,1,317,248,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage mentions that blogging can help improve student writing, specifically by reducing sloppy grammar and spelling due to the presence of an audience. So, option 1 is mentioned as a benefit.
+
+2. The passage actually suggests that the presence of an audience (peers) can lead to criticism, which in turn motivates students to improve their writing. It does not mention a decrease in criticism from peers as a benefit. Instead, it implies that the anticipation of criticism can be a motivating factor for improvement. So, this seems like a likely candidate for the correct answer.
+
+3. The passage does mention that blogging ""forces students to become more savvy about the world around them,"" which suggests a broadened awareness of surroundings. So, option 3 is mentioned as a benefit.
+
+4. The passage also mentions that blogging ""encourages students to extend learning well beyond the traditional school day,"" which implies an increased desire for continued learning. So, option 4 is mentioned as a benefit.
+
+Based on this analysis, the correct answer is the option that is not mentioned in the passage as a primary benefit of student blogging.
+
+<answer>2</answer>"
+q_22,English,2,2,1,319,152,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage mentions that blogging can help improve student writing.
+2. It states that the presence of an audience changes the way students write, implying that the audience has an impact on their writing.
+3. Specifically, it says that students ""strive to improve writing to avoid criticism"" and that the need to feed the interest of the audience inspires students to be clever and interesting.
+
+Based on this analysis, we can conclude that the correct answer is a combination of options 2 and 3. However, since we need to choose only one option, we can select the one that is most directly related to the motivation to improve writing skills.
+
+<answer>2</answer>"
+q_23,English,2,2,1,248,244,"
+
+To answer this question, let's analyze the passage and the options provided.
+
+The passage highlights several benefits of asynchronous communication for students, including:
+
+* Time for reflection and reaction to others
+* Ability to work at their own pace and control the pace of instructional information
+* Fewer time restrictions with the possibility of flexible working hours
+* Access to information at all times through the Internet and the World Wide Web
+* Ability to submit questions to instructors at any time of day and expect reasonably quick responses
+
+Now, let's examine the options:
+
+1. The use of internet as a resource - This is mentioned in the passage as a benefit of asynchronous communication.
+2. Face-to-face access to instructors at any time of day - This is not mentioned in the passage. In fact, the passage states that students can submit questions to instructors at any time of day and expect reasonably quick responses, implying that face-to-face access is not necessary.
+3. Flexible working hours - This is mentioned in the passage as a benefit of asynchronous communication.
+4. Pace control - This is also mentioned in the passage as a benefit of asynchronous communication.
+
+Based on the analysis, the correct answer is:
+
+<answer>2</answer>"
+q_24,English,3,3,1,238,222,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage states that asynchronous communication allows students to ""work at their own pace."" This implies that the learning pace is flexible.
+
+2. It also mentions ""the possibility of flexible working hours,"" indicating that working hours are flexible.
+
+3. The passage does not explicitly state that instructional material is flexible, but it does mention that students can access information at all times, which suggests that the access to instructional material is flexible.
+
+4. The passage states that students can access the Internet and the World Wide Web at all times, which implies that Internet usage is flexible.
+
+Considering these points, the aspect of asynchronous communication that is not explicitly stated as flexible is the instructional material itself, although access to it is flexible. However, the question seems to be looking for an aspect that is not flexible at all, and based on the given options and the information provided, the best interpretation is that the passage does not explicitly mention the flexibility of the instructional material in the same way it does for the other options.
+
+<answer>3</answer>"
+q_25,English,4,4,1,232,142,"
+
+To answer this question, let's analyze the passage and the options given.
+
+The passage mentions the following as things one might associate with medieval castles:
+- Jousts
+- Banquets
+- Arthurian chivalry
+- The sounds and smells of battles long gone
+- The clatter of hooves on the cobbles
+- The fear rising from the dungeon pits
+
+Now, let's look at the options given:
+1) Dungeon pits - Mentioned in the passage.
+2) Jousts - Mentioned in the passage.
+3) Chivalry - Mentioned in the passage.
+4) Knights - Not mentioned in the passage.
+
+<answer>4</answer>"
+q_26,English,3,3,1,236,185,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage mentions that it's easy to bring to mind the ""sounds and smells of battles long gone"" among the castle ruins. So, ""battles"" is mentioned as a sound or smell that could be conjured.
+2. The passage specifically mentions that you can ""almost hear the clatter of hooves on the cobbles"", so ""hooves"" is mentioned as a sound.
+3. The passage also mentions that you can ""smell the fear rising from the dungeon pits"", so ""fear"" is mentioned as a smell.
+4. However, ""banquets"" is mentioned in the passage as something that conjures up images, but it is not mentioned as a specific sound or smell that could be conjured among the castle ruins.
+
+Therefore, the correct answer is:
+
+<answer>3</answer>"
+q_27,English,2,2,1,239,200,"To answer this question, let's break down the information provided in the passage.
+
+1. The passage states that Kirby Muxloe Castle is ""more of a fortified house than a true castle,"" indicating that it doesn't have the typical defensive features of a castle, such as thick walls.
+2. It mentions that the castle's ""large glazed windows and thin walls would not have been able to resist a determined attack for long,"" which contradicts option 1 and 4.
+3. The passage also states that the country was ""relatively peaceful"" during the 1480s when the castle's construction began, and that defense was only required against ""small bands of roving marauders."" This suggests that the castle didn't need to be heavily fortified, which supports option 2.
+4. The passage describes the castle as ""typical for the period,"" which contradicts option 3.
+
+Based on this analysis, the correct answer is:
+
+<answer>2</answer>"
+q_28,English,2,2,1,220,292,"To answer this question, let's analyze the passage step by step:
+
+1. The passage states that Kirby Muxloe Castle is ""more of a fortified house than a true castle."" This implies that it doesn't have the typical defensive features of a castle.
+2. It mentions that the castle has ""large glazed windows and thin walls,"" which would not have been able to resist a determined attack for long. This suggests that these features are typical for the period.
+3. The passage also states that the country was relatively peaceful during the time of the castle's construction, and defense was only required against small bands of roving marauders. This implies that strong defensive features were not necessary.
+
+Now, let's evaluate the options:
+
+1. Huge windows: The passage mentions that the castle has large glazed windows, which is consistent with the description of the castle as a fortified house.
+2. A foundation built to sustain attacks: This would be atypical for Kirby Muxloe Castle, as the passage suggests that the castle's construction did not prioritize strong defensive features.
+3. Less fortification than some castles: This is consistent with the passage's description of the castle as a fortified house rather than a true castle.
+4. Thin walls: The passage mentions that the castle has thin walls, which is consistent with the description of the castle as a fortified house.
+
+Based on the analysis, the correct answer is:
+
+<answer>2</answer>"
+q_29,English,4,4,1,246,234,"To answer this question, let's break down the information provided in the passage.
+
+1. The passage states that endurance is crucial for a half-miler, and speed, while important, is secondary.
+2. It suggests that cross country running during the winter, combined with gym work for the upper body, is the best preparation for the running season.
+
+Now, let's evaluate the options:
+
+1. Practicing cross country running in the summer: The passage recommends cross country running during the winter, not summer.
+2. Focusing on cultivating speed while training: The passage emphasizes endurance over speed.
+3. Beating a three minute time: The passage mentions beating a two minute time as a benchmark for a first-class half-miler, not three minutes.
+4. Utilizing the gym to work out the upper body: This is mentioned in the passage as part of the recommended preparation, along with cross country running.
+
+Considering the information provided, the most beneficial activity for a runner preparing for the upcoming season, according to the passage, is utilizing the gym to work out the upper body, as it is part of the recommended preparation.
+
+<answer>4</answer>"
+q_30,English,2,2,1,243,241,"
+
+To answer this question, let's break down the information provided in the passage.
+
+1. The passage mentions that with the change from the quarter to the half mile run, endurance becomes an absolute necessity. This suggests that endurance is crucial for a half-mile runner.
+
+2. It states that a first-class half-miler must be possessed of a fair amount of speed, but it emphasizes that endurance must be cultivated at all hazards. This indicates that while speed is important, endurance is more critical.
+
+3. The passage does not imply that practicing cross country running during the winter months is the most important factor for a first-class half-mile runner; it suggests this as part of the best preparation for the running season, not as the utmost importance.
+
+4. Clocking in under two minutes is mentioned as a characteristic of a first-class half-miler, but it is not presented as the most important factor; rather, it is an outcome of having the necessary endurance and speed.
+
+5. The passage explicitly states that endurance must be cultivated over speed, indicating that endurance is of utmost importance.
+
+Therefore, the correct answer is the one that emphasizes the cultivation of endurance over speed.
+
+<answer>2</answer>"
+q_31,English,3,3,1,184,173,"
+
+To answer this question, let's break down the information provided in the passage.
+
+1. The passage states that proper nutritional practices can ""significantly affect young athletes' overall wellness."" This implies that nutritional practices can contribute to general wellness, so option 4 is not the correct answer.
+
+2. It mentions that understanding nutritional practices can help athletes ""improve their performance."" This means that nutritional practices can lead to improved performance, making option 1 incorrect.
+
+3. The passage also notes that proper nutritional practices can help athletes ""increase their enjoyment of the sport."" Therefore, option 2 is not the correct answer.
+
+4. However, the passage clearly states that ""proper nutritional practices alone cannot generate elite performances."" This directly indicates that elite performance cannot be achieved solely through nutritional practices, making option 3 the correct answer.
+
+<answer>3</answer>"
+q_32,English,2,2,1,207,206,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage states that proper nutritional practices can significantly affect young athletes' overall wellness.
+2. It mentions that maintaining a healthy energy balance, practicing effective hydration habits, and understanding supplementation practices can help athletes improve their performance and increase their enjoyment of the sport.
+
+Now, let's examine the options:
+
+1. Practicing proper nutrition is mentioned as a way to improve performance and increase enjoyment.
+2. Consistently performing at an elite level is not mentioned as a way to find more enjoyment in the sport. In fact, the passage states that proper nutritional practices alone cannot generate elite performances.
+3. Hydrating effectively is mentioned as a way to improve performance and increase enjoyment.
+4. Maintaining a healthy energy balance is also mentioned as a way to improve performance and increase enjoyment.
+
+Based on the analysis, the correct answer is the option that is not mentioned as a way to find more enjoyment in the sport.
+
+<answer>2</answer>"
+q_33,English,1,1,1,209,280,"
+
+To answer this question, let's break down the information provided in the passage.
+
+1. The passage states that middle distance running is a relatively inexpensive sport, indicating that the cost of equipment is generally low.
+2. It mentions that there are many misconceptions regarding the few pieces of equipment required to participate, suggesting that some runners might believe certain products are necessary or beneficial when they are not.
+3. The passage also notes that athletes may feel they prefer a product even when it provides no real benefits, indicating that personal preference can play a role in purchasing decisions.
+
+Given these points, let's evaluate the options:
+
+1. It’s their personal preference - This aligns with the passage's statement that athletes may prefer a product even if it offers no real benefits.
+2. It has proven benefits - The passage suggests that most products have little or no real impact on performance, contradicting this option.
+3. It will greatly impact their performance - Similar to option 2, the passage indicates that most products will have little or no real impact on performance.
+4. There are misconceptions surrounding less expensive equipment - While the passage mentions misconceptions, it does not specifically state that these misconceptions are about less expensive equipment.
+
+Based on the analysis, the most fitting answer is related to personal preference, as it directly aligns with the information provided in the passage.
+
+<answer>1</answer>"
+q_34,English,3,3,1,189,143,"To answer this question, let's break down the information provided in the passage.
+
+1. The passage states that middle distance running is a ""relatively inexpensive sport."" This suggests that it does not require a lot of money, which eliminates option 4.
+2. It mentions ""the few pieces of equipment required to participate."" This indicates that the sport does not need a lot of equipment, which eliminates option 1.
+3. There is no mention of an ""established athletic background"" being necessary, so we can eliminate option 2 based on the information given.
+4. The passage emphasizes that the sport requires ""very little equipment,"" which directly supports option 3.
+
+<answer>3</answer>"
+q_35,English,3,3,1,268,127,"To answer this question, let's analyze the information provided in the passage step by step:
+
+1. The passage mentions that nuclear magnetic resonance (NMR) was discovered in the 1930s.
+2. It specifically names Felix Bloch and Edward Purcell as the individuals who discovered this phenomenon.
+3. The passage does not mention Raymond Damadian in the context of discovering NMR but rather in the context of developing MRI technology based on NMR.
+
+Given this information, the correct answer to the question of who discovered nuclear magnetic resonance is the option that names both Bloch and Purcell.
+
+<answer>3</answer>"
+q_36,English,2,2,1,273,85,"To answer this question, we need to look at the information provided in the passage about the patent for medical imaging resonance. According to the passage, Raymond Damadian discovered the basis for using magnetic resonance imaging as a tool for medical diagnosis in 1970. It is stated that ""Four years later a patent was granted,"" which directly implies that the patent was granted in 1974.
+
+<answer>2</answer>"
+q_37,English,2,2,1,250,275,"
+
+To answer this question, let's break it down step by step:
+
+1. **Understanding the question**: The question asks what humans should have a strong understanding of in order to interpret the physical actions of others correctly.
+
+2. **Identifying key information in the passage**: The passage highlights that understanding the intention of others is crucial for resolving possible ambiguities of physical actions. It provides an example where understanding the intention (stealing vs. breaking into one's own car due to lost keys) changes how the action is perceived.
+
+3. **Analyzing the options**:
+   - **Desire**: While understanding desire can be important, the passage does not specifically mention it as crucial for interpreting physical actions.
+   - **Intention**: The passage explicitly states that understanding the intention of others is crucial for resolving ambiguities in physical actions.
+   - **Belief**: Belief is mentioned as one of the things humans can predict about others, but it is not highlighted as crucial for interpreting physical actions.
+   - **Perception**: Perception is also mentioned, but the passage focuses more on the importance of understanding intentions rather than perceptions when it comes to interpreting actions.
+
+4. **Conclusion**: Based on the information provided in the passage, the correct answer is the one that aligns with the importance of understanding intentions for interpreting physical actions.
+
+<answer>2</answer>"
+q_38,English,1,1,1,247,309,"To answer this question, let's break down the information provided in the passage and analyze the options given.
+
+1. The passage states that humans are skilled at reading the minds of others, which includes predicting what others perceive, intend, believe, know, or desire.
+2. It specifically highlights understanding the intention of others as crucial.
+3. The example given illustrates how understanding intention helps resolve ambiguities in physical actions, such as the difference between breaking into a stranger's car versus one's own car due to lost keys.
+
+Now, let's evaluate the options:
+
+1. **Eliminate uncertainty behind physical actions** - This option directly aligns with the example provided in the passage, where understanding the intention (to steal vs. to retrieve one's own car) clarifies the ambiguity of the physical action (breaking the car window).
+
+2. **Predict desires** - While predicting desires is mentioned as one of the human abilities in reading minds, it is not directly linked to the specific example or the main point about understanding intentions.
+
+3. **View other humans without judgement** - This option is not supported by the passage. In fact, the passage suggests that understanding intentions helps in making judgments about others' actions.
+
+4. **Read the minds of others** - This is a broader ability mentioned in the passage, but it does not specifically address how understanding intentions helps in the context provided.
+
+Given the analysis, the correct answer is the one that directly relates to the example and the main point about understanding intentions.
+
+<answer>1</answer>"
+q_39,English,4,4,1,257,251,"
+
+To answer this question, let's break down the information provided in the passage and analyze the options given.
+
+1. **Understanding AI's Main Purpose**: The passage describes AI as a branch of computer science that deals with behavior, learning, and intelligent adaptation in machines. It specifically mentions that research in AI involves making machines to automate tasks that require intelligent behavior.
+
+2. **Analyzing the Options**:
+   - **Option 1 (Planning)**: While planning is mentioned as an example of what AI can do, it is not described as the main purpose of AI.
+   - **Option 2 (Voice recognition)**: Voice recognition is given as an example of what AI systems can accomplish, but it is not presented as the main purpose of AI.
+   - **Option 3 (Scheduling)**: Similar to planning, scheduling is an example of AI's capabilities, not its main purpose.
+   - **Option 4 (Task automation)**: This option aligns with the passage's description of AI's main purpose, which is to automate tasks that require intelligent behavior.
+
+Based on the analysis, the correct answer is the one that directly corresponds with the main purpose of AI as described in the passage.
+
+<answer>4</answer>"
+q_40,English,3,3,1,251,268,"To answer this question, let's analyze the passage step by step:
+
+1. The passage mentions that AI has a strong connotation of science fiction, but this is not what AI is often associated with in the context of its applications.
+2. It lists several examples of tasks that AI is used for, including control, planning and scheduling, answering customer diagnoses and questions, handwriting recognition, voice and face recognition.
+3. The passage also mentions that AI is now often used in various fields such as economics, medicine, engineering, and the military.
+
+Considering the options provided:
+
+1. Customer service is mentioned as an example of AI's application, but it's not the most comprehensive answer.
+2. Planning and scheduling is also mentioned as an example, but again, it's not the most comprehensive answer.
+3. Science fiction is mentioned as a connotation, but not as something AI is often associated with in terms of its applications.
+4. Handwriting recognition is mentioned as an example, but it's not the most comprehensive answer.
+
+However, upon re-reading the passage, I realize that I missed the fact that the question asks for something AI is ""often associated with"", and option 3) Science fiction is indeed something AI is often associated with, even if it's not its primary application.
+
+<answer>3</answer>"
+q_41,English,4,4,1,255,237,"To answer this question, let's analyze the passage step by step:
+
+1. The passage describes convergent thinking patterns as problem-solving techniques that unite different ideas or fields to find a solution.
+2. It highlights the focus of this mindset as speed, logic, and accuracy, as well as the identification of facts, reapplying existing techniques, and gathering information.
+3. The passage also mentions that people with this type of thinking have logical thinking, are able to memorize patterns, solve problems, and work on scientific tests.
+
+Now, let's evaluate the options:
+
+1. Identifying multiple correct answers to a problem: The passage actually states that there is only one correct answer, so this option is incorrect.
+2. Applying new techniques to a problem: The passage mentions reapplying existing techniques, not applying new ones, so this option is also incorrect.
+3. Taking their time to solve problems: The passage highlights speed as a focus of this mindset, so this option is incorrect.
+4. Memorizing patterns: The passage explicitly states that people with convergent thinking patterns are able to memorize patterns, so this option is correct.
+
+<answer>4</answer>"
+q_42,English,2,2,1,254,182,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage states that the focus of the convergent thinking mindset includes ""speed, logic and accuracy, also identification of facts, reapplying existing techniques, gathering information.""
+2. We can see that ""identification of facts"" and ""gathering information"" are explicitly mentioned as part of the focus.
+3. The passage also emphasizes the importance of ""speed,"" which implies that taking one's time is not a primary concern.
+4. The idea that ""there is only one correct answer"" is presented as a key factor of the convergent thinking mindset, but it's not necessarily a ""focus"" in the same way that speed, logic, and accuracy are.
+
+Considering these points, the correct answer is the one that is not mentioned as a focus of the convergent thinking mindset.
+
+<answer>2</answer>"
+q_43,English,4,4,1,235,176,"To determine which option would not be considered a micro-expression, let's analyze the definition provided in the passage. Micro-expressions are described as facial movements that last a few milliseconds. With this in mind, let's examine each option:
+
+1) Glancing away while speaking - This action could potentially be a micro-expression, as it involves a brief facial movement.
+2) Furrowing the brow - This is a facial movement that could also be a micro-expression.
+3) Blinking rapidly - Blinking is a facial movement, and rapid blinking could be considered a micro-expression.
+4) Giving a thumb’s up - This action involves the hand, not the face, and is not described as lasting only a few milliseconds.
+
+Based on the definition provided in the passage, giving a thumb's up does not meet the criteria for a micro-expression.
+
+<answer>4</answer>"
+q_44,English,3,3,1,239,223,"To answer this question, let's analyze each statement in relation to the information provided in the passage.
+
+1) ""Video recordings have led to significant advancements"" - This statement is true according to the passage, which mentions that the use of video recording has led to important discoveries in the interpretation of micro-expressions.
+
+2) ""Correct interpretation may detect lying"" - This statement is also true as per the passage, which claims that one can detect whether a person is lying by interpreting micro-expressions correctly.
+
+3) ""Speech as well as facial expressions are interpreted"" - This statement is not supported by the passage. The passage actually differentiates between interpreting speech and interpreting facial expressions or human behavior. It mentions people who are unable to understand speech but can still assess sincerity accurately, suggesting these are separate abilities.
+
+4) ""It can help assess sincerity"" - This statement is true according to the passage, which mentions that interpreting micro-expressions can help assess sincerity accurately.
+
+Therefore, the statement that is not true about micro-expression interpretation is related to the interpretation of speech alongside facial expressions.
+
+<answer>3</answer>"
+q_45,English,3,3,1,201,103,"To answer this question, let's break down the information provided in the passage.
+
+1. The passage mentions that the approach to obtaining information changed during the Renaissance.
+2. It states that the pressure no longer resided within individual recall, implying that individual recall was less important.
+3. It then says that the ability to recall text became more of a focus.
+
+Considering these points, we can conclude that the correct answer is related to recalling text, as it became more important.
+
+<answer>3</answer>"
+q_46,English,1,1,1,208,158,"
+
+To answer this question, let's break down the information provided in the passage.
+
+1. The passage mentions that the approach to obtaining information changed during the Renaissance.
+2. It states that the pressure no longer resided within individual recall, implying that individual recall was less emphasized.
+3. It also mentions that the ability to recall text became more of a focus, which suggests that text recall was actually more emphasized.
+4. The passage concludes that the Renaissance made a significant change in the approach to learning and the dissemination of knowledge, implying that the distribution of information was still important.
+
+Considering these points, we can see that the correct answer is the one that corresponds to individual recall, as it is the only option that is mentioned as being less emphasized.
+
+<answer>1</answer>"
+q_47,English,3,3,1,231,216,"
+
+To answer this question, let's analyze the options in relation to the motivation of using the internet for ""continuing relationships"" as mentioned in the passage. Continuing relationships imply maintaining or enhancing existing connections with others, whether personal or professional.
+
+1) Business networking - This can be seen as a way to maintain or enhance professional relationships, which fits the motivation of continuing relationships.
+2) Staying in touch with family - This is a clear example of continuing personal relationships.
+3) Researching travel - While this might be a shared interest that could be discussed with others, it doesn't directly relate to the motivation of continuing relationships. It's more about personal interest or planning.
+4) Meeting new people - Although this is about forming new relationships rather than continuing existing ones, it still pertains to the broader context of relationships.
+
+Given the options, researching travel (3) is the one that least reflects a motivation to use the internet for continuing relationships, as it's more about personal interest or planning rather than directly engaging in or maintaining relationships.
+
+<answer>3</answer>"
+q_48,English,2,1,0,228,223,"To answer this question, let's consider what ""personal involvement"" means in the context of internet use. Personal involvement refers to activities that allow users to engage actively with online content, express themselves, or interact with others. This can include creating content, participating in discussions, or sharing personal thoughts and opinions.
+
+Now, let's examine each option:
+
+1. Looking up a recipe: This activity is more about seeking information than personal involvement. While users may engage with the content, it's primarily a passive activity.
+2. Posting on an online discussion board: This activity involves creating content and engaging with others, which reflects personal involvement.
+3. Researching healthcare products: Similar to looking up a recipe, researching healthcare products is primarily an information-seeking activity, which may not necessarily involve personal involvement.
+4. Managing finances: This activity can involve interacting with online tools and services, which may require some level of personal involvement.
+
+Considering these options, looking up a recipe (option 1) is the activity that least reflects personal involvement, as it's primarily a passive information-seeking activity.
+
+<answer>1</answer>"
+q_49,English,1,1,1,246,196,"To answer this question, let's break down the information provided in the passage.
+
+1. The passage mentions that Gothic style peaked between the 10th-11th centuries and the 14th century. This gives us a broad time frame but doesn't directly answer the question.
+2. It states that at the beginning, dress was heavily influenced by the Byzantine culture. This tells us about the influence but not about when Western Europe started developing its own style.
+3. The passage notes that due to slow communication channels, styles in the west could lag behind by 25 to 30 years. This is an interesting fact but doesn't directly answer our question.
+4. Finally, it mentions that towards the end of the Middle Ages, Western Europe began to develop their own style. This directly answers our question.
+
+Given the information, the correct answer is related to the end of the Middle Ages, which is mentioned in option 1.
+
+<answer>1</answer>"
+q_50,English,3,3,1,230,198,"To answer this question, let's break it down step by step:
+
+1. The passage mentions that the Gothic style peaked between the 10th-11th centuries and the 14th century. However, it does not directly link the use of buttons to the Gothic period.
+
+2. The Byzantine era is mentioned as an influence on dress at the beginning of the period, but it is not associated with the introduction of buttons.
+
+3. The passage explicitly states that ""one of the biggest developments of the time as a result of the crusades people began to use buttons to fasten clothing."" This directly links the use of buttons to the Crusades.
+
+4. The Middle Ages is the broader time period during which these events took place, but it is not specifically credited with the introduction of buttons.
+
+Given this analysis, the correct answer is the one that directly corresponds to the event mentioned in the passage as the cause for the introduction of buttons.
+
+<answer>3</answer>"
+q_51,English,3,3,1,252,220,"To find the correct answer, let's analyze the passage step by step:
+
+1. The passage mentions that joining the environmental movement and being activists can help reduce future suffering to some degree, but it also states that these actions are like symptomatic treatment, implying that they are temporary solutions.
+
+2. The passage then emphasizes the importance of finding the root of the problems and deactivating them in order to achieve a more lasting solution.
+
+3. It highlights overpopulation and mankind's extravagant lifestyle as significant factors contributing to environmental issues.
+
+Considering these points, we can evaluate the options:
+
+- Option 1 (Boycotting extravagant lifestyle choices) is a specific action that could help, but it's not explicitly mentioned as the primary solution in the passage.
+- Option 2 (Activism) and Option 4 (Becoming an ally of the environmental movement) are mentioned as temporary solutions.
+- Option 3 (Identifying the cause of the issues) aligns with the passage's emphasis on finding the root of the problems to achieve a lasting solution.
+
+<answer>3</answer>"
+q_52,English,2,2,1,258,311,"To answer this question, let's break down the information provided in the passage and analyze the options given.
+
+1. The passage distinguishes between symptomatic treatments and addressing the root causes of environmental issues. Symptomatic treatments are described as temporary solutions that do not address the underlying problems.
+
+2. It suggests that joining the environmental movement, being activists, and living more environmentally friendly are considered symptomatic treatments. These actions are likened to treating the symptoms rather than the cause.
+
+3. The passage emphasizes the importance of finding and deactivating the root causes of environmental problems for a more lasting solution. It mentions overpopulation and mankind's extravagant lifestyle as significant factors contributing to these issues.
+
+Now, let's evaluate the options:
+
+1) Engaging in activism - According to the passage, this is considered a symptomatic treatment.
+2) Deactivating the root causes of the issues - This is presented as the approach that goes beyond symptomatic treatment, aiming for a more fundamental solution.
+3) Voicing opinions about extravagant lifestyle choices - While this action might raise awareness, it is not explicitly mentioned in the passage as going beyond symptomatic treatment. It could be seen as part of the symptomatic treatment or as a precursor to deeper action.
+4) Living in a more environmentally-friendly way - This is also described as a symptomatic treatment in the passage.
+
+Given the information in the passage, the correct answer is the option that represents a solution that goes beyond treating the symptoms and addresses the underlying causes of environmental issues.
+
+<answer>2</answer>"
+q_53,English,4,4,1,245,265,"To answer this question, let's break it down step by step:
+
+1. **Understanding the Question**: The question asks for the country in which the first war related to the balance of power rather than a religious context took place.
+
+2. **Identifying the War**: According to the passage, the War of Spanish Succession is identified as the first war whose central issue was the balance of power.
+
+3. **Locating the War**: The name ""War of Spanish Succession"" directly implies that the war was related to Spain. Succession implies a struggle for the throne or control of a country, and in this context, it was specifically about Spain.
+
+4. **Eliminating Other Options**: 
+   - England (1) is not directly related to the War of Spanish Succession as the primary location.
+   - Germany (2) is mentioned in the context of the Thirty Years' War, which is described as the last religious war, not the War of Spanish Succession.
+   - Portugal (3) is not mentioned in the passage as being directly related to the War of Spanish Succession.
+
+5. **Conclusion**: Based on the information provided in the passage, the correct answer is related to Spain, as the War of Spanish Succession is the event in question.
+
+<answer>4</answer>"
+q_54,English,1,1,1,247,152,"
+
+To answer this question, let's analyze the information provided in the passage step by step:
+
+1. The passage discusses the concept of the balance of power in Europe, where nations sought to prevent any one nation from becoming too powerful.
+2. It mentions that the War of Spanish Succession was the first war whose central issue was the balance of power.
+3. It also states that this marked a change, as European powers would no longer have the pretext of fighting religious wars.
+4. Specifically, it notes that the Thirty Years' War would be the last war to be labeled a religious war.
+
+Given this information, we can conclude that the Thirty Years' War is the one described as the last 'religious war'.
+
+<answer>1</answer>"
+q_55,English,2,2,1,283,315,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage mentions that the Catholic Church came under scrutiny, indicating that its practices and actions were being questioned.
+2. It highlights the Church's wealth and power, suggesting that these aspects were being examined.
+3. The passage specifically mentions that the concentration of power and money in Rome led to questions about whether the Church's tenets were being met.
+4. The main tenet mentioned is that wealth should be used to alleviate suffering and poverty, implying that the allocation of wealth within the Church was being scrutinized.
+
+Now, let's examine the options:
+
+1. If the allocation of wealth within the Church was appropriate - This aspect is indeed being scrutinized, as the passage questions whether the Church's wealth is being used to alleviate suffering and poverty.
+2. If the main tenets of the religion should be amended - There is no indication in the passage that the tenets themselves are being questioned or considered for amendment. The focus is on whether the Church is adhering to its existing tenets.
+3. The concentration of power within the Church - This aspect is being scrutinized, as the passage mentions that the concentration of power and money in Rome led to questions.
+4. If the main tenets of the Church were being met - This aspect is also being scrutinized, as the passage questions whether the Church's wealth is being used to alleviate suffering and poverty, as per its main tenets.
+
+Based on the analysis, the correct answer is:
+
+<answer>2</answer>"
+q_56,English,4,4,1,259,122,"To answer this question, let's analyze the passage step by step:
+
+1. The passage mentions that the King, Queen, and their family were forced back to Paris from Versailles by a mob of market women.
+2. It describes the scene where the royal family was surrounded by a mob of people screaming and shouting threats.
+3. The passage specifically mentions that a member of the mob waved the head of a royal guard killed at Versailles in front of the terrified Queen.
+
+From this information, we can conclude that the person murdered at Versailles was a royal guard.
+
+<answer>4</answer>"
+q_57,English,3,3,1,274,280,"To answer this question, let's analyze the options one by one in relation to the information provided in the passage.
+
+1) The opening of their carriage windows - According to the passage, the mob forced the King and Queen to have their carriage windows wide open. So, this was indeed forced upon them.
+
+2) An abrupt exit from Versailles - The passage states that the King, Queen, and their family were forced back to Paris from Versailles by a mob. This implies that their departure from Versailles was not voluntary but forced by the mob. So, this was also forced upon them.
+
+3) A viewing of the guard’s beheading - The passage mentions that a member of the mob waved the head of a royal guard killed at Versailles in front of the terrified Queen. However, it does not explicitly state that the King and Queen were forced to watch the beheading itself. The passage only mentions the display of the guard's head, not the act of beheading being forced upon them to watch.
+
+4) A trip back to Paris - The passage clearly states that the King, Queen, and their family were forced back to Paris by the mob. So, this was indeed forced upon them.
+
+Given the information in the passage, the correct answer is the option that describes an event not explicitly stated as being forced upon the King and Queen.
+
+<answer>3</answer>"
+q_58,English,3,3,1,241,167,"
+
+To answer this question, let's analyze the passage and the options provided.
+
+The passage states that Britain's naval blockade was effective in cutting off vital military and civilian supplies, which aligns with option 4. It also mentions that the blockade caused danger to even neutral ships, which matches option 2. Additionally, the passage notes that Germany expected a similar response to its unrestricted submarine warfare, implying that Britain's actions influenced Germany's decision to employ similar tactics, as stated in option 1.
+
+However, the passage does not mention that changes were made to international law as a result of Britain's unconventional naval warfare. It only mentions that the blockade violated generally accepted international law, but it does not indicate that the law was changed in response to these actions.
+
+Therefore, the correct answer is:
+
+<answer>3</answer>"
+q_59,English,4,4,1,233,222,"To answer this question, let's analyze each statement in relation to the information provided in the passage.
+
+1) ""It went against international law"" - According to the passage, the blockade ""violated generally accepted international law codified by several international agreements of the past two centuries."" Therefore, this statement is accurate.
+
+2) ""It prompted Germany’s submarine warfare"" - The passage suggests that Germany's expectation of a similar response to its unrestricted submarine warfare was based on Britain's actions, implying a connection. Thus, this statement can be considered accurate in the context provided.
+
+3) ""It interrupted the flow of German supplies"" - The passage states that the blockade ""cut off vital military and civilian supplies,"" which directly supports this statement. Therefore, it is accurate.
+
+4) ""It ensured that neutral ships wouldn’t be jeopardized"" - The passage actually states the opposite: ""Britain mined international waters to prevent any ships from entering entire sections of ocean, causing danger to even neutral ships."" This indicates that the blockade did jeopardize neutral ships, making this statement inaccurate.
+
+<answer>4</answer>"
+q_60,English,1,1,1,222,230,"To answer this question, let's break down the information provided in the passage:
+
+1. MS is the leading neurological disease in younger and middle-aged adults. This suggests that the disease is more common in adults rather than children.
+2. Females are two times more likely to have MS than males. This indicates that gender plays a role in the likelihood of developing MS.
+
+Considering these points, we can evaluate the options:
+
+* Option 1: A 32-year-old female fits the demographic of younger and middle-aged adults and is also a female, which increases the likelihood of having MS.
+* Option 2: A 15-year-old male is a bit young for the typical demographic of MS, and being male also decreases the likelihood.
+* Option 3: A 43-year-old male is within the age range but is male, which decreases the likelihood compared to a female.
+* Option 4: A 10-year-old female is too young for the typical demographic of MS.
+
+Given the information, the most likely candidate for a diagnosis of Multiple Sclerosis would be a 32-year-old female.
+
+<answer>1</answer>"
+q_61,English,1,1,1,203,249,"
+
+To answer this question, let's break down the information provided in the passage and analyze the question step by step.
+
+1. **Understanding the passage**: The passage discusses a study that looked at the relationship between pain, depression, fear, catastrophizing, and disability in people with lower back pain. It found that depression, fear, and catastrophizing play a role in how pain affects disability. However, only catastrophizing was affected by regular physical activity (PA) sessions. Furthermore, the passage mentions that participants who engaged in regular physical activity needed more support, specifically in distinguishing between the negative perception of pain and normal physical movement.
+
+2. **Analyzing the question**: The question asks what participants in regular activity required more support for. The options provided are negative perception of pain, the lower back, depression, and fear.
+
+3. **Matching the information to the options**: Based on the passage, the correct answer is related to the need for support in distinguishing between the negative perception of pain and normal physical movement among participants in regular physical activity.
+
+4. **Selecting the correct option**: The option that directly matches the information provided in the passage is related to the negative perception of pain.
+
+<answer>1</answer>"
+q_62,English,4,4,1,167,224,"To answer this question, let's break it down step by step:
+
+1. **Understanding the question**: We're asked how fencing is usually played according to the passage.
+
+2. **Identifying relevant information in the passage**: The passage mentions that ""The sport is primarily played in a duel format, one fencer dueling another."" This directly addresses how fencing is usually played.
+
+3. **Evaluating the options**:
+   - Option 1 mentions ""In a modern format,"" which is not directly related to how fencing is played but rather when it is played.
+   - Option 2, ""At the university level,"" and Option 3, ""At the Olympic level,"" both refer to levels at which fencing is played, not how it is played.
+   - Option 4, ""In a duel format,"" directly matches the information provided in the passage about how fencing is usually played.
+
+4. **Conclusion**: Based on the information provided in the passage and the analysis of the options, the correct answer is the one that directly states how fencing is usually played.
+
+<answer>4</answer>"
+q_63,English,4,4,1,202,266,"
+
+To answer this question, let's break it down step by step:
+
+1. **Understanding the passage**: The passage talks about internal poisoning and how it may not be immediately apparent due to general symptoms. It suggests that the presence of an open container of medication or toxic household chemicals could be a strong indicator.
+
+2. **Analyzing the options**:
+   - **Option 1 (Nausea and fever)**: These are general symptoms that could be associated with many conditions, not just internal poisoning.
+   - **Option 2 (Vomiting and sweating)**: Like nausea and fever, these are also general symptoms that could be related to various health issues.
+   - **Option 3 (Severe cramping and stomach pain)**: While these could be symptoms of internal poisoning, they are still not specific enough to pinpoint poisoning without further evidence.
+   - **Option 4 (A prescription pill bottle)**: This directly relates to the passage's mention of an open container of medication as a strong indicator of internal poisoning.
+
+3. **Conclusion**: Based on the passage, the strongest indicator of internal poisoning, given the options provided, is the presence of a prescription pill bottle, as it directly correlates with the passage's advice to check the label for specific first aid instructions.
+
+<answer>4</answer>"
+q_64,English,1,1,1,184,98,"To answer this question, let's break it down step by step:
+
+1. The passage emphasizes the importance of ensuring one's safety before attempting to help the victim.
+2. It mentions surveying the scene as the first action to take.
+3. Observing the scene is crucial to identify any potential hazards or ""automatic red flags.""
+
+Given this information, the correct sequence of actions starts with ensuring safety by observing the scene before taking any further steps.
+
+<answer>1</answer>"
+q_65,English,1,1,1,198,8,<answer>1</answer>
+q_66,English,2,2,1,252,272,"
+
+To answer this question, let's analyze the options step by step in relation to the impact on working-class citizens:
+
+1) Increased support for the nation - While nationalism was indeed a significant outcome of the French Revolution, the passage does not directly link increased support for the nation as having a specific, significant impact on working-class citizens in terms of their social or economic status.
+
+2) A shift of focus from class to competence - This option directly relates to the passage's mention that occupations and military rankings were now based on caliber (competence) rather than class. This change would have significantly impacted working-class citizens by providing them with opportunities for advancement based on merit rather than birth.
+
+3) An adoption of Republican ideology - While the shift from absolutism to republicanism was a major political outcome of the French Revolution, the passage does not specifically highlight how this shift directly benefited working-class citizens in a tangible way, such as through economic or social mobility.
+
+4) A new measuring system - The adoption of the metric system, while a significant cultural and scientific change, does not directly relate to the social or economic status of working-class citizens.
+
+Considering these points, the most relevant change that had a significant impact on working-class citizens is the shift from class to competence, as it directly affected their opportunities for social and economic advancement.
+
+<answer>2</answer>"
+q_67,English,2,2,1,239,156,"
+
+To answer this question, let's break it down step by step:
+
+1. The passage states that after the French Revolution, occupations and military rankings were no longer based on a certain factor.
+2. It specifically mentions that army rankings were ""now based on caliber"" instead of the previous system.
+3. The passage implies that the previous system was based on ""class"", as it mentions that occupations were open to all male applicants, regardless of their background.
+4. The correct answer should be the factor that was previously used to determine success, but is no longer the primary factor.
+
+Considering these points, the correct answer is the one that refers to the factor that was previously used to determine success, but is no longer the primary factor.
+
+<answer>2</answer>"
+q_68,English,3,3,1,192,264,"
+
+To answer this question, let's break down the information provided in the passage.
+
+1. The passage mentions that ""Almost everyone complains about transportation systems."" This indicates a high level of discontent with transportation.
+2. It contrasts this with the situation in developed countries regarding water quality and bridges, stating that you ""seldom hear similar levels of complaints"" about these services. This implies that there is less discontent with water quality and bridge construction compared to transportation.
+
+Given this information, we can now evaluate the options:
+
+1. Water quality - The passage suggests that there are seldom complaints about water quality, so this is unlikely to be the correct answer.
+2. Bridge construction - Similar to water quality, the passage implies that there are fewer complaints about bridge construction, making this an unlikely answer as well.
+3. Public transport - The passage specifically mentions that ""Almost everyone complains about transportation systems,"" which would include public transport. This aligns with the information provided.
+4. Education - Education is not mentioned in the passage at all, so we cannot infer anything about the level of discontent with this service from the given text.
+
+Based on the information provided in the passage, the correct answer is the one related to transportation, which is most closely matched by option 3, ""Public transport.""
+
+<answer>3</answer>"
+q_69,English,3,3,1,222,261,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage states that ""Almost everyone complains about transportation systems."" This suggests that there is a high level of dissatisfaction with public transportation systems.
+
+2. It contrasts this with the situation in developed countries, where ""you seldom hear similar levels of complaints about water quality or bridges falling down."" This implies that transportation systems are a particular source of frustration.
+
+3. The passage asks rhetorical questions about why transportation systems engender such complaints and whether transportation engineers are incompetent. This reinforces the idea that there is a significant problem with transportation systems.
+
+Now, let's evaluate the answer options:
+
+1. ""They are well loved by everybody who uses them"" - This is the opposite of what the passage suggests.
+2. ""They aren’t as bad as the quality of water"" - The passage actually suggests that water quality is not a major source of complaints, implying that transportation systems are worse in this regard.
+3. ""They cause a lot of complaints by those who use them"" - This aligns with the passage's statement that ""Almost everyone complains about transportation systems.""
+4. ""They are free in most developed countries"" - There is no mention of the cost of transportation systems in the passage.
+
+<answer>3</answer>"
+q_70,English,4,4,1,254,332,"To answer this question, let's break it down step by step:
+
+1. The passage states that ""studying traffic flow is difficult because driver behavior cannot be predicted with one-hundred percent certainty."" This suggests that the unpredictability of drivers makes it challenging to gauge certain aspects of traffic.
+
+2. The passage then mentions that ""drivers tend to behave within a reasonably consistent range; thus, traffic streams tend to have some reasonable consistency and can be roughly represented mathematically."" This implies that despite the unpredictability, there are some patterns and consistencies in traffic behavior.
+
+3. The passage highlights the importance of understanding the relationships between the three main characteristics of traffic flow: flow, density, and velocity. This suggests that these characteristics are crucial in understanding traffic flow.
+
+4. Now, let's examine the options:
+   - Option 1: Traffic velocity is one of the characteristics of traffic flow, but the passage does not specifically state that it is difficult to gauge due to the unpredictability of drivers.
+   - Option 2: Roadway planning is mentioned as one of the applications of understanding traffic flow, but it is not directly related to the unpredictability of drivers.
+   - Option 3: Roadway operations is also mentioned as an application of understanding traffic flow, but it is not directly related to the unpredictability of drivers.
+   - Option 4: Traffic Flow is the main subject of the passage, and it is stated that studying traffic flow is difficult due to the unpredictability of drivers.
+
+Based on the analysis, the correct answer is the one that is directly related to the unpredictability of drivers.
+
+<answer>4</answer>"
+q_71,English,4,4,1,252,305,"
+
+To answer this question, let's break it down step by step:
+
+1. The passage states that studying traffic flow is difficult due to the unpredictability of driver behavior. However, it also mentions that drivers tend to behave within a reasonably consistent range, allowing for some mathematical representation of traffic streams.
+
+2. The passage then mentions that relationships have been established between three main characteristics of traffic flow: (1) flow, (2) density, and (3) velocity. These relationships help in planning, design, and operations of roadway facilities.
+
+3. Now, let's examine the options:
+   - Option 1: Roadway operations. While roadway operations are mentioned as one of the areas where the relationships between flow, density, and velocity are helpful, it is not the answer we are looking for.
+   - Option 2: Driver behavior. Driver behavior is mentioned as a factor that cannot be predicted with one-hundred percent certainty, but it is not the correct answer.
+   - Option 3: Roadway design. Similar to roadway operations, roadway design is an area where the relationships between flow, density, and velocity are helpful, but it is not the correct answer.
+   - Option 4: Traffic density. Traffic density is one of the three main characteristics of traffic flow that are used to represent traffic streams mathematically.
+
+Based on the information provided in the passage, the correct answer is the one that is directly related to the mathematical representation of traffic streams.
+
+<answer>4</answer>"
+q_72,English,4,4,1,192,168,"To answer this question, let's break it down step by step:
+
+1. The question asks what Hershey and Chase used to implant their DNA.
+2. The passage states that they used ""phages, or viruses"" to do this.
+3. Now, let's look at the options:
+   - Option 1 is ""Radioactive phosphorus"", which was used to mark the DNA, not to implant it.
+   - Option 2 is ""Genetic material"", which is what DNA is, but not what was used to implant it.
+   - Option 3 is ""Radioactive sulfur"", which was used to mark the protein, not to implant the DNA.
+   - Option 4 is ""Viruses"", which is another term for phages, and is the correct answer.
+
+<answer>4</answer>"
+q_73,English,1,1,1,195,256,"To answer this question, let's break it down step by step:
+
+1. **Understanding the question**: We're asked about the condition that allows a mutation to be passed on to offspring.
+
+2. **Identifying key information in the passage**: The passage mentions that ""Only mutations in germ-line cells can be passed on to children...""
+
+3. **Analyzing the options**:
+   - **Option 1**: ""If the cells are germ-line"" directly matches the information given in the passage as the condition for a mutation to be passed on to children.
+   - **Option 2**: ""The significance of genetic material"" is mentioned in the passage as a factor affecting the impact of a mutation but not its ability to be passed on.
+   - **Option 3**: ""The mutation type"" is also mentioned as affecting the impact of a mutation but not its heritability.
+   - **Option 4**: ""If the mutation can cause cell-death"" is mentioned as a possible effect of mutations but not related to their heritability.
+
+4. **Conclusion**: Based on the information provided in the passage, the ability for a mutation to be passed on to offspring is dependent on whether the cells affected are germ-line cells.
+
+<answer>1</answer>"
+q_74,English,1,1,1,209,198,"
+
+To answer this question, let's analyze the passage and the options given.
+
+The passage states that the effects of mutations depend on:
+
+1. ""the type of mutation""
+2. ""the significance of the piece of genetic material affected""
+3. ""whether the cells affected are germ-line cells""
+
+Now, let's examine the options:
+
+1. ""How much of the genetic material is affected"" - This is not mentioned in the passage as a factor that affects the outcome of mutations.
+2. ""If the affected cells are germ-line"" - This is mentioned in the passage as a factor.
+3. ""The affected genetic material’s significance"" - This is also mentioned in the passage as a factor.
+4. ""The type of affected mutation"" - This is mentioned in the passage as a factor.
+
+Based on the information given in the passage, the various effects of mutations do not rely upon ""How much of the genetic material is affected"".
+
+<answer>1</answer>"
+q_75,English,3,3,1,232,170,"
+
+To answer this question, let's analyze the passage and the options provided.
+
+The passage states that ancient cultures kept goats for ""easy access to milk, hair, meat, and skins."" This information directly supports options 1 and 4, as it mentions that goats provided access to meat and milk.
+
+Option 2, ""They helped graze the land,"" is not explicitly mentioned in the passage as a reason for keeping goats. However, it can be inferred that goats did graze on hills and other areas, but this was not listed as a primary reason for keeping them.
+
+Option 3, ""They offered companionship,"" is not mentioned at all in the passage.
+
+Based on the information provided in the passage, the correct answer is the option that was not mentioned as a reason for keeping goats.
+
+<answer>3</answer>"
+q_76,English,2,2,1,209,89,"
+
+To answer this question, let's break it down step by step:
+
+1. The passage explains that the objective of golf is to complete the course with the fewest number of a certain action.
+2. It mentions that the player who takes the fewest ""strokes, or swings of the club"" wins.
+3. Therefore, the goal of golf is to take the least amount of strokes.
+
+<answer>2</answer>"
+q_77,English,2,2,1,222,113,"
+
+To answer this question, let's analyze the information provided in the passage step by step:
+
+1. The passage mentions that the game of golf is played on grass.
+2. It specifically states that the grass around the hole is mown shorter.
+3. It then names this shorter-cut grass as the ""green.""
+
+Given this information, we can conclude that the grass is cut shorter around the holes, which is referred to as the ""green."" Therefore, the correct answer is the one that directly references the ""green.""
+
+<answer>2</answer>"
+q_78,English,1,1,1,195,287,"To answer this question, let's break it down step by step:
+
+1. **Understanding the Scientific Method and Experimentation**: The passage mentions that the scientific method guides most scientific research, and it also highlights the role of experimentation. This indicates that experiments are a crucial part of the scientific process.
+
+2. **Identifying the Purpose of an Experiment**: The passage explicitly states that an experiment is ""a test that is used to eliminate one or more of the possible hypotheses."" This directly answers the question about the typical purpose of an experiment.
+
+3. **Evaluating the Options**:
+   - **Option 1**: ""To eliminate one or more possible hypotheses"" directly matches the description given in the passage for the purpose of an experiment.
+   - **Option 2**: ""To figure out how the world works"" is more aligned with the overall goal of science rather than the specific purpose of an experiment.
+   - **Option 3**: ""To pose questions"" is part of the scientific process but not the specific purpose of an experiment as described.
+   - **Option 4**: ""To guide scientific research"" is more about the role of the scientific method and experimentation in general, rather than the specific purpose of an experiment.
+
+4. **Conclusion**: Based on the information provided in the passage, the correct answer is the one that directly corresponds with the description of an experiment's purpose.
+
+<answer>1</answer>"
+q_79,English,1,1,1,196,210,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage states that the scientific method guides most scientific research.
+2. It also mentions that experimentation, asking questions, and making observations guide scientific research.
+3. Eliminating possible hypotheses is mentioned as part of the experimentation process.
+
+Now, let's examine the options:
+
+1. The scientific method alone - The passage actually states that the scientific method isn't alone in guiding scientific research, implying that it is one of the guides, but not the only one.
+2. Making observations - This is mentioned as one of the guides for scientific research.
+3. Eliminating possible hypotheses - This is part of the experimentation process, which is mentioned as a guide for scientific research.
+4. Conducting experiments - This is also mentioned as a guide for scientific research.
+
+Considering the options, the passage does not say that the scientific method alone guides scientific research, but rather that it is one of the guides. Therefore, the correct answer is:
+
+<answer>1</answer>"
+q_80,English,3,3,1,234,205,"To find the statement that is not true, let's analyze each option in relation to the information provided in the passage.
+
+1) The passage states that tornadoes ""can destroy everything in their path,"" which supports this statement as true.
+
+2) The passage mentions that tornadoes ""strike a small area compared to other violent storms,"" which aligns with this statement, making it true.
+
+3) The passage indicates that ""The most violent two percent of tornadoes last more than three hours,"" which implies that the majority of tornadoes do not last more than three hours. This makes the statement that ""The majority of tornadoes last more than three hours"" false.
+
+4) The passage specifies that the most violent tornadoes ""have winds up to 480 km/h (133 m/s; 300 mph),"" which directly supports this statement as true.
+
+Therefore, the statement about tornadoes that is not true is the one claiming that the majority of tornadoes last more than three hours.
+
+<answer>3</answer>"
+q_81,English,4,4,1,231,237,"
+
+To answer this question, let's analyze the information provided in the passage step by step:
+
+1. The passage states that tornadoes strike a small area compared to other violent storms. This information directly contradicts option 3, which claims that they affect larger areas than other storms. So, option 3 is incorrect.
+
+2. The passage mentions that the most violent two percent of tornadoes last more than three hours. This implies that the majority of tornadoes (98%) do not last more than three hours. Therefore, option 1 is incorrect.
+
+3. The passage also states that the most violent two percent of tornadoes have winds up to 480 km/h (300 mph). This suggests that the majority of tornadoes do not have winds as high as 480 km/h (300 mph). Thus, option 2 is incorrect.
+
+4. The passage explicitly states that tornadoes uproot trees, which means they are capable of ripping trees from the ground. This directly supports option 4.
+
+Based on the analysis, the correct answer is the one that describes a characteristic of the majority of tornadoes accurately according to the passage.
+
+<answer>4</answer>"
+q_82,English,4,4,1,180,141,"To answer this question, let's analyze the information provided in the passage step by step:
+
+1. The passage states that humans have been making and using lenses for magnification for thousands and thousands of years. This means that making and using lenses for magnification started long before the 16th century.
+
+2. It specifically mentions that the first true telescopes were made in Europe in the late 16th century. This indicates a new development that occurred in the 16th century.
+
+Given this information, we can conclude that the correct answer is related to the making of telescopes, as that is the activity specifically mentioned as starting in the 16th century.
+
+<answer>4</answer>"
+q_83,English,2,3,0,193,268,"
+
+To answer this question, let's analyze the information provided in the passage step by step:
+
+1. The passage states that humans have been making and using lenses for magnification for ""thousands and thousands of years."" This indicates a long period of time, far exceeding a single thousand years or a specific century.
+
+2. The mention of the late 16th century refers specifically to the invention of the first true telescopes in Europe, not the beginning of lens use for magnification.
+
+3. The options provided can be evaluated as follows:
+   - Option 1: ""For a thousand years"" is too short a period based on the passage.
+   - Option 2: ""Since the late 16th century"" refers to the invention of telescopes, not the use of lenses for magnification.
+   - Option 3: ""For thousands of years"" aligns with the passage's description of how long humans have been using lenses for magnification.
+   - Option 4: ""Since the early 16th century"" is also incorrect as it does not accurately represent the duration of lens use for magnification mentioned in the passage.
+
+Based on the analysis, the correct answer is the one that accurately reflects the duration of humans using lenses for magnification as described in the passage.
+
+<answer>3</answer>"
+q_84,English,1,1,1,294,177,"To answer this question, let's analyze the passage step by step:
+
+1. The passage states that Muhammad used to frequent a cave for contemplation, which suggests that he valued a quiet and isolated space for reflection.
+2. The description of the cave as ""completely isolated from the rest of the world"" and ""not easy to find"" reinforces the idea that Muhammad sought solitude for his spiritual practices.
+3. The passage also notes that ""very little of this world can be seen or heard from inside the cave"", which implies that Muhammad wanted to minimize distractions and focus on his inner thoughts and reflections.
+4. Based on these details, we can infer that Muhammad valued peace and isolation for his spiritual practices.
+
+Considering the options, we can eliminate options 2, 3, and 4 as they contradict the information provided in the passage.
+
+<answer>1</answer>"
+q_85,English,1,2,0,260,236,"
+
+To answer this question, let's analyze the passage step by step:
+
+1. The passage mentions that wagonways were initially made of parallel planks of wood.
+2. It then states that crossties were introduced to hold the tracks in place, but it doesn't mention that crossties were made of iron.
+3. The passage then mentions that a strip of iron was introduced on top of the tracks to make them more efficient.
+4. Later, it mentions that the iron on the tracks caused wear on the wooden wheels, which were eventually replaced by iron wheels.
+5. Finally, it mentions that the first full-iron rails were introduced in 1767.
+
+From this analysis, we can conclude that iron was first used as a strip on top of the tracks, which is option 2) Wagonways, but more specifically, it was used on the wagonways to make them more efficient. However, the correct interpretation of the question is what was iron used for first, and the answer is that iron was used for the wagonways, but in the form of a strip on top of the tracks.
+
+<answer>2</answer>"
+q_86,English,4,4,1,282,166,"
+
+To answer this question, let's analyze the relevant information from the passage step by step:
+
+1. The passage mentions that wagonways were initially made of parallel planks of wood.
+2. It then states that to make the tracks more efficient, a strip of iron was placed on top of the wooden planks.
+3. The introduction of iron on the tracks led to a problem: it caused more wear on the wooden wheels of the wagons.
+4. As a result of this increased wear, wooden wheels were eventually replaced by iron wheels.
+
+Given this sequence of events, the reason for the replacement of wooden wheels with iron wheels is directly linked to the wear caused by the iron strips on the tracks. Therefore, the correct answer is the one that reflects this cause-and-effect relationship.
+
+<answer>4</answer>"
+q_87,English,2,2,1,190,294,"To answer this question, let's break it down step by step:
+
+1. **Understanding the passage context**: The passage discusses Romanticism and its elements, specifically focusing on cultural determinism. This concept suggests that the environment or surroundings play a significant role in shaping individuals and societies.
+
+2. **Identifying the key phrase**: The key phrase in the passage is ""the geography molded individuals."" This phrase directly addresses the question of what shaped individuals during the period of Romanticism.
+
+3. **Analyzing the options**:
+   - **Option 1 (Laws)**: The passage actually contrasts laws with the natural development of customs and culture, suggesting that laws are ""arbitrarily imposed"" and thus not the primary shaper of individuals.
+   - **Option 2 (Geography)**: This option aligns with the key phrase from the passage, indicating that geography played a crucial role in molding individuals.
+   - **Option 3 (Customs)**: While customs are mentioned as arising from geography, they are not the primary shaper of individuals according to the passage.
+   - **Option 4 (Culture)**: Similar to customs, culture is a result of geography but is not identified as the primary factor shaping individuals.
+
+4. **Conclusion**: Based on the analysis, the correct answer is the one that directly corresponds with the information provided in the passage about what shaped individuals during the period of Romanticism.
+
+<answer>2</answer>"
+q_88,English,1,1,1,323,199,"To answer this question, let's break down the general ideas of technological determinism as described in the passage and compare them to the options provided.
+
+1. The passage states that the development of technology itself follows a path largely beyond cultural or political influence. This aligns with options 2 and 4, which suggest that development of technology is not influenced by culture and is not based on political influence, respectively.
+
+2. It also mentions that technology in turn has ""effects"" on societies that are inherent, rather than socially conditioned. This directly supports option 3, which states that technology has inherent effects on society.
+
+3. Option 1, however, states that technology's effects on society are socially conditioned. This contradicts the passage, which explicitly states that the effects of technology are inherent, rather than socially conditioned.
+
+Therefore, the statement that does not reflect a general idea of technological determinism is the one that suggests technology's effects are socially conditioned.
+
+<answer>1</answer>"
+q_89,English,1,1,1,258,269,"
+
+To answer this question, let's analyze the information provided in the passage step by step:
+
+1. The passage describes two types of bow marks: the ""up bow"" mark, which looks like a V, and the ""down bow"" mark, which resembles a staple or a square missing its bottom side.
+
+2. It explains that ""up"" means starting at the tip and pushing the bow, while ""down"" means starting at the frog (where your hand is holding the bow) and pulling the bow.
+
+3. The passage also associates the direction of the bow with the sound produced: an up-bow usually generates a softer sound, while a down-bow is stronger and more assertive.
+
+Given this information, we can determine which option is not associated with pulling the bow:
+
+- Option 1: A softer sound is associated with pushing the bow (up-bow), not pulling.
+- Option 2: A mark that looks like a staple is associated with pulling the bow (down-bow).
+- Option 3: A stronger sound is associated with pulling the bow (down-bow).
+- Option 4: Starting at the frog is associated with pulling the bow (down-bow).
+
+Therefore, the correct answer is the option that describes something not associated with pulling the bow:
+
+<answer>1</answer>"
+q_90,English,3,3,1,258,179,"To answer this question, let's analyze the passage step by step:
+
+1. The passage describes the ""up bow"" mark as looking like a V and the ""down bow"" mark as looking like a staple or a square missing its bottom side.
+2. It explains that ""up"" means starting at the tip and pushing the bow, while ""down"" means starting at the frog (where your hand is holding the bow) and pulling the bow.
+3. It states that an up-bow usually generates a softer sound, while a down-bow is stronger and more assertive.
+
+Based on this information, we can conclude that the gentler sound is associated with the ""up bow"", which is described as starting at the tip and pushing the bow, and is represented by a mark that looks like a V.
+
+So, the correct answer is:
+
+<answer>3</answer>"
+q_91,English,1,1,1,219,205,"To answer this question, let's break down the information provided in the passage.
+
+1. The passage states that hominids no longer use their hands for locomotion, bearing weight, or swinging through trees, unlike other primates.
+2. It highlights the difference between the hands of chimpanzees (which are similar in size and length to their feet, reflecting their use for bearing weight in knuckle walking) and human hands (which are shorter than the feet, with straighter phalanges).
+3. It mentions that fossil hand bones from two million to three million years ago reveal a shift in the specialization of the hand.
+
+Given these points, the passage indicates that the hands of hominids (including humans) have evolved to be specialized for a different purpose than they were in the past. The correct answer is related to the new specialization of the hand, which is mentioned in the passage as a shift ""from locomotion to manipulation.""
+
+Therefore, the correct answer is:
+
+<answer>1</answer>"
+q_92,English,3,3,1,240,230,"
+
+To answer this question, let's analyze the information provided in the passage step by step:
+
+1. The passage mentions that the human hand has straighter phalanges compared to the chimpanzee's, which implies that the chimpanzee's phalanges are not as straight as those of humans. This information rules out option 1.
+
+2. The passage states that the chimpanzee's hand and foot are similar in size and length, which directly contradicts option 2.
+
+3. The passage explains that the chimpanzee's hand is used for bearing weight in knuckle walking, which aligns with option 3. This indicates that the phalanges of a chimpanzee are indeed used for bearing weight.
+
+4. The passage highlights the shift in specialization of the human hand from locomotion to manipulation, contrasting humans with other primates like chimpanzees. This implies that the chimpanzee's hand is not primarily used for manipulation, ruling out option 4.
+
+Based on the analysis, the correct answer is the one that accurately describes the phalanges of a chimpanzee being used for bearing weight.
+
+<answer>3</answer>"
+q_93,English,4,4,1,171,332,"To answer this question, let's break down the information provided in the passage step by step:
+
+1. **Understanding the pools of genetic variation**: The passage mentions two pools of genetic variation - hidden and expressed. This means genetic variation can exist in two forms: one that is not currently visible (hidden) and one that is visible or expressed in the population.
+
+2. **Role of Mutation**: Mutation is said to add new genetic variation. This means that mutations introduce new variations into the gene pool, but it doesn't specify into which pool (hidden or expressed) these variations are added.
+
+3. **Role of Selection**: Selection is stated to remove genetic variation from the pool of expressed variation. This implies that selection acts on the variations that are visible or expressed in the population, reducing the diversity of the expressed traits.
+
+4. **Roles of Segregation and Recombination**: These processes shuffle variation back and forth between the two pools with each generation. This means they can move variations from the hidden pool to the expressed pool and vice versa, but they do not remove variation from the pool.
+
+Given this breakdown, the question asks from which pool selection removes new genetic variation. Based on the information provided:
+
+- **Option 1 (Hidden)** is incorrect because selection removes variation from the expressed pool, not the hidden pool.
+- **Option 2 (Recombination)** and **Option 3 (Segregation)** are incorrect because these are processes, not pools of genetic variation.
+- **Option 4 (Expressed)** is correct because the passage explicitly states that selection removes genetic variation from the pool of expressed variation.
+
+<answer>4</answer>"
+q_94,English,3,3,1,171,238,"To answer this question, let's break down the information provided in the passage regarding the processes mentioned and their roles in genetic variation.
+
+1. **Mutation**: The passage states that ""Mutation adds new genetic variation."" This directly indicates that mutation is the process responsible for introducing new genetic variation into the pool.
+
+2. **Segregation**: It is described as one of the processes that ""shuffle variation back and forth between the two pools with each generation."" This implies that segregation rearranges existing genetic variation but does not add new variation.
+
+3. **Recombination**: Similar to segregation, recombination is also mentioned as a process that shuffles variation between the two pools. This suggests that recombination rearranges existing genetic variation but does not introduce new variation.
+
+4. **Expressed**: This is not a process but rather a state or pool of genetic variation. The passage distinguishes between ""hidden"" and ""expressed"" genetic variation, indicating that ""expressed"" refers to the pool of variation that is currently manifest in the population, not a process that adds variation.
+
+Given the information, the process responsible for adding genetic variation is clearly identified as mutation.
+
+<answer>3</answer>"
+q_95,English,3,3,1,296,93,"
+
+To solve a ""protein problem,"" a primate needs a source of protein that is easily digestible and contains all the essential amino acids. According to the passage, animal foods such as ants, termites, and eggs meet these criteria. Among the options provided, grasshoppers are the closest match to these examples, as they are an animal food source that would likely be easily digestible and provide high-quality protein.
+
+<answer>3</answer>"
+q_96,English,1,1,1,287,152,"To answer this question, let's analyze the passage step by step.
+
+The passage states that a lack of essential amino acids can lead to serious consequences, including growth depression, malnutrition, and ultimately death. This implies that these three consequences (growth depression, malnutrition, and death) are directly related to a lack of essential amino acids.
+
+However, the passage also mentions that plant resources, such as leaves and legumes, are hard for primates to digest unless they are cooked. This suggests that digestion issues are related to the difficulty in digesting certain plant resources, rather than a lack of essential amino acids.
+
+Therefore, based on the passage, digestion issues are not directly caused by a lack of essential amino acids.
+
+<answer>1</answer>"
+q_97,English,4,4,1,254,228,"
+
+To answer this question, let's break it down step by step:
+
+1. **Understanding the question**: We're asked how members of a subculture typically indicate that they belong to that group.
+
+2. **Analyzing the options**:
+   - **Option 1**: ""By attempting to blend in"" suggests hiding one's identity rather than expressing it, which contradicts the idea of signaling membership.
+   - **Option 2**: ""By adopting the beliefs of everyone around them"" implies conformity to a broader societal norm rather than embracing a specific subculture.
+   - **Option 3**: ""By accepting societal norms"" also suggests conformity rather than the expression of a distinct identity.
+   - **Option 4**: ""By using style as a form of symbolism"" directly relates to the passage's mention of ""a distinctive and symbolic use of style"" as a way members signal their membership.
+
+3. **Conclusion**: Based on the information provided in the passage, the correct answer is the one that aligns with the use of style as a means of expressing membership in a subculture.
+
+<answer>4</answer>"
+q_98,English,2,2,1,232,252,"
+
+To answer this question, let's break down the information provided in the passage and apply it to the scenario presented in the question.
+
+1. The passage states that children develop an awareness of race and racial stereotypes at a young age.
+2. It mentions that these racial stereotypes can affect behavior.
+3. Specifically, it gives the example that children who identify with a racial minority stereotyped as not doing well in school tend to not do well in school once they learn about the stereotype associated with their race.
+
+From this information, we can infer that the passage suggests children tend to internalize and act in accordance with the stereotypes associated with their racial group once they become aware of those stereotypes.
+
+Given this understanding, let's apply it to the question about a child who identifies with a racial minority stereotyped for engaging in menacing behavior:
+
+- The passage implies that if a child identifies with a racial minority that is stereotyped in a certain way, they are more likely to behave in accordance with that stereotype once they become aware of it.
+- Therefore, a child who identifies with a racial minority stereotyped for engaging in menacing behavior would, according to the theory presented, be more likely to engage in menacing behavior.
+
+<answer>2</answer>"
+q_99,English,2,2,1,198,280,"To answer this question, let's break it down step by step:
+
+1. **Understanding the passage**: The passage discusses how children develop an awareness of race and racial stereotypes at a young age. It also mentions that these stereotypes can influence their behavior, specifically citing the example of academic performance.
+
+2. **Analyzing the options**:
+   - **Option 1**: ""The racial minority they choose to identify with"" - The passage does not suggest that knowledge of racial stereotypes influences which racial minority a child identifies with. Instead, it implies that once a child identifies with a particular racial minority, the associated stereotypes can affect their behavior.
+   - **Option 2**: ""Their behavior"" - This is directly supported by the passage, which states that racial stereotypes can affect behavior, specifically mentioning the example of academic performance.
+   - **Option 3**: ""Their relationships with other children"" - While this could be a plausible indirect effect, the passage does not explicitly mention the impact of racial stereotypes on relationships with other children.
+   - **Option 4**: ""Their definition of race"" - The passage does not discuss how knowledge of racial stereotypes affects a child's definition of race.
+
+3. **Conclusion**: Based on the information provided in the passage, the correct answer is the one that directly relates to the impact of racial stereotypes on a child's behavior.
+
+<answer>2</answer>"
