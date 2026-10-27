@@ -80,3 +80,52 @@ def test_full_pipeline_with_sweep():
     assert res["PerfGain"] == pytest.approx(0.0)
     assert res["CostSave"] == pytest.approx(1 - 22.0 / 40.0)
     assert res["ParetoDist"] == pytest.approx(1 / 6)
+
+
+def write_predictions(path, rows):
+    """Write a minimal prediction CSV in the format of src/model.py."""
+    lines = ["question_id,language,gold,pred,correct,prompt_tokens,completion_tokens"]
+    lines += [f"{qid},X,1,1,{c},{p},{o}" for qid, c, p, o in rows]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def test_query_cost():
+    assert ev.query_cost("small", 1_000_000, 1_000_000) == pytest.approx(0.06)
+    assert ev.query_cost("big", 500_000, 0) == pytest.approx(0.20)
+
+
+def test_load_predictions_joins_by_question_id(tmp_path):
+    # big file lists the questions in a different order
+    write_predictions(
+        tmp_path / "prediction_en_small.csv", [("q_0", 1, 100, 10), ("q_1", 0, 100, 10)]
+    )
+    write_predictions(
+        tmp_path / "prediction_en_big.csv", [("q_1", 1, 200, 20), ("q_0", 1, 200, 20)]
+    )
+
+    preds = ev.load_predictions(tmp_path, ["en"])
+
+    assert preds.question_ids == ["q_0", "q_1"]
+    assert preds.groups == ["en", "en"]
+    assert preds.correct == [[1.0, 1.0], [0.0, 1.0]]
+    assert preds.costs[0] == pytest.approx(
+        [ev.query_cost("small", 100, 10), ev.query_cost("big", 200, 20)]
+    )
+
+
+def test_load_predictions_rejects_missing_questions(tmp_path):
+    write_predictions(
+        tmp_path / "prediction_en_small.csv", [("q_0", 1, 1, 1), ("q_1", 1, 1, 1)]
+    )
+    write_predictions(tmp_path / "prediction_en_big.csv", [("q_0", 1, 1, 1)])
+    with pytest.raises(ValueError):
+        ev.load_predictions(tmp_path, ["en"])
+
+
+def test_baseline_report():
+    preds = ev.Predictions(["q_0", "q_1", "q_2", "q_3"], GROUPS, CORRECT, COSTS)
+    report = ev.baseline_report(preds)
+    assert set(report) == {"always_small", "always_big", "oracle"}
+    assert report["oracle"]["Gap@O"] == pytest.approx(0.0)
+    assert report["always_big"]["Gain@B"] == pytest.approx(0.0)
+    assert report["always_small"]["Cost"] == pytest.approx(4.0)

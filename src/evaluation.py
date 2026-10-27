@@ -17,9 +17,13 @@ Everything is plain Python so that the module has no dependencies.
 
 from __future__ import annotations
 
+import argparse
+import csv
 import math
 from collections import defaultdict
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
+from pathlib import Path
 
 Matrix = Sequence[Sequence[float]]
 
@@ -360,3 +364,123 @@ def evaluate_router(
         result["ParetoDist"] = pareto_dist(sweep, model_points)
 
     return result
+
+
+# ---------------------------------------------------------------------------
+# Loading the model predictions (output of src/model.py)
+# ---------------------------------------------------------------------------
+
+DATA_DIR = Path(__file__).resolve().parent / "data"
+
+# Column order of the correct/costs matrices: 0 = small (cheap), 1 = big.
+MODELS = ("small", "big")
+LANGUAGES = ("en", "sw")
+
+# USD per 1M tokens, same prices as in analysis.ipynb
+INPUT_PRICE = {"small": 0.02, "big": 0.40}
+OUTPUT_PRICE = {"small": 0.04, "big": 0.40}
+
+
+@dataclass
+class Predictions:
+    """Per-query matrices for all languages, ready for ``evaluate_router``."""
+
+    question_ids: list[str]
+    groups: list[str]
+    correct: list[list[float]]
+    costs: list[list[float]]
+
+
+def query_cost(model: str, prompt_tokens: int, completion_tokens: int) -> float:
+    """Inference cost in USD of one model call."""
+    return (
+        prompt_tokens * INPUT_PRICE[model] + completion_tokens * OUTPUT_PRICE[model]
+    ) / 1_000_000
+
+
+def _read_prediction_file(path: Path) -> dict[str, dict[str, str]]:
+    csv.field_size_limit(10**8)  # raw_output can be long
+    with open(path, encoding="utf-8", newline="") as f:
+        return {row["question_id"]: row for row in csv.DictReader(f)}
+
+
+def load_predictions(
+    data_dir: Path = DATA_DIR, languages: Sequence[str] = LANGUAGES
+) -> Predictions:
+    """Join the small and big prediction CSVs of every language by ``question_id``.
+
+    Reads ``prediction_{language}_{model}.csv``. Both models must cover the same
+    questions, otherwise the comparison would be unfair and a ValueError is raised.
+    """
+    preds = Predictions([], [], [], [])
+    for lang in languages:
+        rows = {
+            m: _read_prediction_file(data_dir / f"prediction_{lang}_{m}.csv")
+            for m in MODELS
+        }
+        ids = list(rows[MODELS[0]])
+        if any(set(rows[m]) != set(ids) for m in MODELS):
+            raise ValueError(f"{lang}: models do not cover the same questions")
+        for qid in ids:
+            preds.question_ids.append(qid)
+            preds.groups.append(lang)
+            preds.correct.append([float(rows[m][qid]["correct"]) for m in MODELS])
+            preds.costs.append(
+                [
+                    query_cost(
+                        m,
+                        int(rows[m][qid]["prompt_tokens"]),
+                        int(rows[m][qid]["completion_tokens"]),
+                    )
+                    for m in MODELS
+                ]
+            )
+    return preds
+
+
+def baseline_report(preds: Predictions) -> dict[str, dict[str, object]]:
+    """Metric suite for the fixed baselines: always small, always big and the oracle.
+
+    These are the reference points any learned router has to be compared against.
+    """
+    n = len(preds.correct)
+    baselines = {
+        "always_small": [0] * n,
+        "always_big": [1] * n,
+        "oracle": oracle_selection(preds.correct, preds.costs),
+    }
+    return {
+        name: evaluate_router(preds.correct, preds.costs, selected, preds.groups)
+        for name, selected in baselines.items()
+    }
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Evaluate the routing baselines.")
+    parser.add_argument("--data-dir", type=Path, default=DATA_DIR)
+    parser.add_argument("--languages", nargs="+", default=list(LANGUAGES))
+    args = parser.parse_args()
+
+    preds = load_predictions(args.data_dir, args.languages)
+    report = baseline_report(preds)
+
+    print(f"{len(preds.correct)} queries, languages: {', '.join(args.languages)}\n")
+    header = ["router", "AvgAcc", *args.languages, "Gain@B", "Gap@O", "Cost $", "OSR"]
+    print(" | ".join(f"{h:>12}" for h in header))
+    for name, res in report.items():
+        per_group = res["Acc_per_group"]
+        assert isinstance(per_group, dict)
+        cells = [
+            name,
+            f"{res['AvgAcc']:.3f}",
+            *(f"{per_group[lang]:.3f}" for lang in args.languages),
+            f"{res['Gain@B']:+.3f}",
+            f"{res['Gap@O']:.3f}",
+            f"{res['Cost']:.4f}",
+            f"{res['OptimalSelectionRatio']:.3f}",
+        ]
+        print(" | ".join(f"{c:>12}" for c in cells))
+
+
+if __name__ == "__main__":
+    main()
