@@ -117,16 +117,22 @@ python src/router.py
 ### Usage
 
 ```bash
-python src/evaluation.py
+python src/evaluation.py [--data-dir src/data] [--languages en sw]
 ```
 
 ### Functionality
-
+* **Metric Suite:** Implements all metrics from `docs/metrics.md` (AvgAcc, Gain@B, Gain@R, Gap@O, PerfGain, CostSave, ParetoDist, Recall@k) plus two diagnostics from the literature review: the Optimal Selection Ratio (RouterArena) and the entropy of the routing distribution (RouterEval). The metrics only use the Python standard library.
+* **Data Convention:** Every metric works on per-query matrices with one column per candidate model (`0 = small`, `1 = big`): `correct[q][m]` (1/0), `costs[q][m]` (USD), the router's choice `selected[q]` and the subset label `groups[q]` (the language). Accuracies are first computed per language and then averaged, so each language counts equally.
+* **Baselines:** The Best Single Model B, the hindsight Oracle O (cheapest correct model per query) and the Random Router R are derived from `correct` and `costs`.
+* **Loading Predictions:** `load_predictions` joins `prediction_{lang}_small.csv` and `prediction_{lang}_big.csv` by `question_id` and raises an error if the two models do not cover the same questions.
+* **Costs:** The cost of a query is computed from `prompt_tokens` and `completion_tokens` with the same prices as in `analysis.ipynb` (USD per 1M tokens: small 0.02 input / 0.04 output, big 0.40 / 0.40).
+* **Entry Point:** `evaluate_router(correct, costs, selected, groups, ...)` returns the full metric dictionary for one router. Passing `scores` enables Recall@k and passing `sweep_selected` (one selection per threshold) enables the cost trade-off metrics.
 
 ### Output
-
+Running the script prints a table with AvgAcc, accuracy per language, Gain@B, Gap@O, total cost and Optimal Selection Ratio for the baselines `always_small`, `always_big` and `oracle`. No files are written.
 
 ### Pipeline Integration
+The evaluation consumes the prediction files written by `src/model.py`. As long as `src/router.py` is not implemented, the script only evaluates the baselines. Once the router produces a model choice per query, its selections are passed to `evaluate_router` together with the matrices from `load_predictions`.
 
 ## 5. Analysis
 ### File
