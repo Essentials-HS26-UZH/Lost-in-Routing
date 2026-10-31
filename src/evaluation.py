@@ -1,18 +1,34 @@
-"""Evaluation pipeline for the language-aware router.
+"""Evaluation and benchmarking pipeline for language-aware and language-blind LLM routers.
 
-Implements the metrics from ``docs/metrics.md`` (LLMRouterBench)
-plus two diagnostics from the literature review (Optimal Selection Ratio from
-RouterArena, classification entropy from RouterEval).
+Computes a comprehensive suite of routing metrics across four established literature frameworks:
+1. LLMRouterBench: Group-balanced accuracy (AvgAcc), relative gain over the best single model
+   (Gain@B), relative gain over random routing (Gain@R), and relative accuracy gap to the
+   hindsight oracle (Gap@O).
+2. Diagnostic metrics: Optimal Selection Ratio (OSR from RouterArena), selection distribution
+   entropy (bias detector from RouterEval), and ranking quality (Recall@k).
+3. Performance-cost trade-offs (RouterBench): Probability threshold sweeps (theta in [0, 1]),
+   non-decreasing convex hull (NDCH) construction, Area under the Hull / Average Incremental
+   Quality (AIQ), cost savings at parity accuracy (CostSave), peak accuracy gain (PerfGain),
+   and L1 distance to the Pareto frontier (ParetoDist).
+4. Cross-router comparative metrics: Relative performance gap closed toward the oracle
+   (GapClosed), and accuracy reachable at a fixed reference budget (Acc@Budget, matched
+   to the inference cost of the deterministic language rule).
 
-Data conventions (one row per query, one column per candidate model):
+Data conventions (one row per query, one column per candidate model: 0 = small, 1 = big):
+- ``correct[q][m]``  -- Binary indicator (1.0/0.0) whether candidate model ``m`` answered query ``q`` correctly.
+- ``costs[q][m]``    -- Query inference cost in USD for model ``m`` on query ``q``, computed from token prices.
+- ``selected[q]``    -- Integer index (0 or 1) of the model selected by the router for query ``q``.
+- ``groups[q]``      -- Subset/demographic label of query ``q`` (language identifier, e.g. "en" or "sw").
+- ``scores[q][m]``   -- Estimated router confidence/probability score for model ``m`` on query ``q``.
 
-* ``correct[q][m]``  -- 1/0, whether model ``m`` answered query ``q`` correctly
-* ``costs[q][m]``    -- inference cost of model ``m`` on query ``q``
-* ``selected[q]``    -- index of the model the router picked for query ``q``
-* ``groups[q]``      -- subset label of query ``q`` (here: the language), i.e. ``d`` in ``D``
-* ``scores[q][m]``   -- router score for model ``m`` on query ``q`` (higher = better)
+Pipeline execution:
+- Loads per-query LLM completions (prompt/completion tokens and correctness) for small and big models.
+- Evaluates four reference baselines: always_small, always_big, language_rule, and oracle.
+- Evaluates learned routers at their fold-selected operating point (theta) and across a 101-point threshold sweep.
+- Computes convex hull interpolations, AIQ integrations, and budget-matched metrics.
+- Exports all scalar results to ``src/data/evaluation_results.csv`` and prints formatted summary tables.
 
-Everything is plain Python so that the module has no dependencies.
+Implemented in plain Python using only the standard library (no external dependencies).
 """
 
 from __future__ import annotations
@@ -23,6 +39,7 @@ import math
 from collections import defaultdict
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
+from itertools import pairwise
 from pathlib import Path
 
 Matrix = Sequence[Sequence[float]]
@@ -231,6 +248,61 @@ def pareto_dist(sweep: Sequence[Point], model_points: Sequence[Point]) -> float:
     return _mean(dists)
 
 
+def ndch(points: Sequence[Point]) -> list[Point]:
+    """RouterBench: non-decreasing convex hull of (accuracy, cost) points.
+
+    Choosing between two configurations at random reaches every point on the line
+    between them, so the upper convex hull is the achievable cost-quality curve.
+    Points that cost more without being more accurate are dropped.
+    """
+    hull: list[Point] = []
+    for acc, cost in sorted(set(points), key=lambda p: (p[1], -p[0])):
+        if hull and acc <= hull[-1][0]:
+            continue
+        while len(hull) >= 2:
+            (a1, c1), (a2, c2) = hull[-2], hull[-1]
+            # drop the middle point if it lies on or below the line to the new one
+            if (a2 - a1) * (cost - c1) <= (acc - a1) * (c2 - c1):
+                hull.pop()
+            else:
+                break
+        hull.append((acc, cost))
+    return hull
+
+
+def accuracy_at_cost(hull: Sequence[Point], cost: float) -> float:
+    """Accuracy reachable on the hull with at most ``cost`` (nan if unreachable)."""
+    if not hull or cost < hull[0][1]:
+        return math.nan
+    for (a1, c1), (a2, c2) in pairwise(hull):
+        if cost <= c2:
+            return a1 + (a2 - a1) * (cost - c1) / (c2 - c1)
+    return hull[-1][0]
+
+
+def aiq(hull: Sequence[Point], cost_min: float, cost_max: float) -> float:
+    """RouterBench AIQ: mean accuracy of the hull over the cost range [min, max].
+
+    The area under the hull is divided by the width of the range. Costs below the
+    cheapest hull point are unreachable and count as accuracy 0.
+    """
+    if cost_max <= cost_min:
+        raise ValueError("cost_max must be larger than cost_min")
+    knots = sorted(
+        {cost_min, cost_max, *(c for _, c in hull if cost_min < c < cost_max)}
+    )
+    area = 0.0
+    for lo, hi in pairwise(knots):
+        a_lo, a_hi = (accuracy_at_cost(hull, c) for c in (lo, hi))
+        if math.isnan(a_lo):  # partly below the cheapest point
+            start = hull[0][1]
+            if start >= hi:
+                continue
+            lo, a_lo = start, hull[0][0]
+        area += (a_lo + a_hi) / 2 * (hi - lo)
+    return area / (cost_max - cost_min)
+
+
 # ---------------------------------------------------------------------------
 # 4. Diagnostic metrics
 # ---------------------------------------------------------------------------
@@ -278,9 +350,8 @@ def selection_entropy(
     Low entropy means the router collapses onto one model. ``normalise`` divides by
     log2(n_models) so 1.0 is a perfectly uniform split.
     """
-    h = -sum(
-        p * math.log2(p) for p in selection_distribution(selected, n_models) if p > 0
-    )
+    dist = selection_distribution(selected, n_models)
+    h = 0.0 - sum(p * math.log2(p) for p in dist if p > 0)  # "0.0 -" avoids -0.0
     return h / math.log2(n_models) if normalise and n_models > 1 else h
 
 
@@ -362,6 +433,10 @@ def evaluate_router(
         result["PerfGain"] = perf_gain(sweep, acc_b_avg)
         result["CostSave"] = cost_save(sweep, acc_b_avg, cost_b)
         result["ParetoDist"] = pareto_dist(sweep, model_points)
+        model_costs = [c for _, c in model_points]
+        hull = ndch(list(sweep) + model_points)
+        result["Hull"] = hull
+        result["AIQ"] = aiq(hull, min(model_costs), max(model_costs))
 
     return result
 
@@ -438,48 +513,230 @@ def load_predictions(
     return preds
 
 
-def baseline_report(preds: Predictions) -> dict[str, dict[str, object]]:
-    """Metric suite for the fixed baselines: always small, always big and the oracle.
+LOW_RESOURCE_LANGUAGES = ("sw",)
 
-    These are the reference points any learned router has to be compared against.
+
+def baseline_report(preds: Predictions) -> dict[str, dict[str, object]]:
+    """Metric suite for the fixed baselines.
+
+    always small, always big, the oracle and a language rule that sends every
+    low-resource query to the big model. A learned language-aware router has to
+    beat the language rule to show that it uses more than the language itself.
     """
     n = len(preds.correct)
     baselines = {
         "always_small": [0] * n,
         "always_big": [1] * n,
+        "language_rule": [int(g in LOW_RESOURCE_LANGUAGES) for g in preds.groups],
         "oracle": oracle_selection(preds.correct, preds.costs),
     }
+    # A fixed rule is a single operating point; as a one-point "sweep" it gets the
+    # same trade-off metrics as the learned routers (mixed with the two models).
     return {
-        name: evaluate_router(preds.correct, preds.costs, selected, preds.groups)
+        name: evaluate_router(
+            preds.correct,
+            preds.costs,
+            selected,
+            preds.groups,
+            sweep_selected=[selected],
+        )
         for name, selected in baselines.items()
     }
 
 
+# ---------------------------------------------------------------------------
+# Learned routers (output of src/router.py)
+# ---------------------------------------------------------------------------
+
+ROUTER_FILE = DATA_DIR / "router_predictions.csv"
+RESULTS_FILE = DATA_DIR / "evaluation_results.csv"
+SWEEP_THRESHOLDS = [i / 100 for i in range(101)]
+
+
+@dataclass
+class RouterScores:
+    """Probability that the big model is needed and the threshold, per query."""
+
+    p_big: list[float]
+    theta: list[float]
+
+
+def load_router_predictions(
+    preds: Predictions, path: Path = ROUTER_FILE
+) -> dict[str, RouterScores]:
+    """Read ``p_big_<name>`` / ``theta_<name>`` columns, aligned with ``preds``."""
+    with open(path, encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        names = [
+            c.removeprefix("p_big_")
+            for c in reader.fieldnames or []
+            if c.startswith("p_big_")
+        ]
+        rows = {(r["language"], r["question_id"]): r for r in reader}
+    keys = list(zip(preds.groups, preds.question_ids))
+    if set(keys) != set(rows):
+        raise ValueError("router predictions do not cover the same queries")
+    return {
+        name: RouterScores(
+            [float(rows[k][f"p_big_{name}"]) for k in keys],
+            [float(rows[k][f"theta_{name}"]) for k in keys],
+        )
+        for name in names
+    }
+
+
+def router_report(
+    preds: Predictions,
+    routers: Mapping[str, RouterScores],
+    thresholds: Sequence[float] = SWEEP_THRESHOLDS,
+) -> dict[str, dict[str, object]]:
+    """Full metric suite for learned routers, including the threshold sweep.
+
+    The default operating point uses the threshold chosen on the training folds;
+    PerfGain, CostSave and ParetoDist sweep the threshold over ``thresholds``.
+    """
+    report = {}
+    for name, r in routers.items():
+        selected = [int(p >= t) for p, t in zip(r.p_big, r.theta)]
+        report[f"router_{name}"] = evaluate_router(
+            preds.correct,
+            preds.costs,
+            selected,
+            preds.groups,
+            scores=[[1 - p, p] for p in r.p_big],
+            sweep_selected=[[int(p >= t) for p in r.p_big] for t in thresholds],
+        )
+    return report
+
+
+def add_budget_accuracy(
+    report: dict[str, dict[str, object]], reference: str = "language_rule"
+) -> None:
+    """Acc@Budget: hull accuracy of every entry at the cost of ``reference``.
+
+    Compares routers at equal spending, e.g. whether a learned router is more
+    accurate than the language rule for the same money.
+    """
+    budget = report[reference]["Cost"]
+    assert isinstance(budget, float)
+    for res in report.values():
+        hull = res.get("Hull")
+        if isinstance(hull, list):
+            res["Acc@Budget"] = accuracy_at_cost(hull, budget)
+
+
+def add_gap_closed(
+    report: dict[str, dict[str, object]],
+    single: str = "always_big",
+    oracle: str = "oracle",
+) -> None:
+    """GapClosed = (AIQ(a) - AIQ(single)) / (AIQ(O) - AIQ(single)).
+
+    Share of the cost-quality gap between the single models (mixed at random) and
+    the oracle that a router closes: 0 = no better than the models, 1 = oracle.
+    """
+    base, best = report[single]["AIQ"], report[oracle]["AIQ"]
+    assert isinstance(base, float) and isinstance(best, float)
+    for res in report.values():
+        value = res.get("AIQ")
+        if isinstance(value, float):
+            res["GapClosed"] = _safe_ratio(value - base, best - base)
+
+
+def write_results(
+    report: Mapping[str, Mapping[str, object]],
+    languages: Sequence[str],
+    path: Path = RESULTS_FILE,
+) -> None:
+    """One row per router with all scalar metrics, for the analysis notebook."""
+    metrics = ["AvgAcc", "Gain@B", "Gain@R", "Gap@O", "Cost", "OptimalSelectionRatio"]
+    metrics += ["SelectionEntropy", "Recall@1", "PerfGain", "CostSave", "ParetoDist"]
+    metrics += ["AIQ", "GapClosed", "Acc@Budget"]
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["router", *metrics, *(f"Acc_{lang}" for lang in languages)])
+        for name, res in report.items():
+            per_group = res["Acc_per_group"]
+            assert isinstance(per_group, dict)
+            writer.writerow(
+                [name, *(res.get(m, "") for m in metrics)]
+                + [per_group[lang] for lang in languages]
+            )
+
+
+def _print_table(header: Sequence[str], rows: Sequence[Sequence[str]]) -> None:
+    print(" | ".join(f"{h:>14}" for h in header))
+    for row in rows:
+        print(" | ".join(f"{c:>14}" for c in row))
+
+
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Evaluate the routing baselines.")
+    parser = argparse.ArgumentParser(description="Evaluate baselines and routers.")
     parser.add_argument("--data-dir", type=Path, default=DATA_DIR)
     parser.add_argument("--languages", nargs="+", default=list(LANGUAGES))
     args = parser.parse_args()
 
     preds = load_predictions(args.data_dir, args.languages)
     report = baseline_report(preds)
+    router_file = args.data_dir / ROUTER_FILE.name
+    if router_file.exists():
+        report.update(router_report(preds, load_router_predictions(preds, router_file)))
+    else:
+        print(f"{router_file} not found, run src/router.py to evaluate the routers\n")
+    add_budget_accuracy(report)
+    add_gap_closed(report)
+    write_results(report, args.languages, args.data_dir / RESULTS_FILE.name)
 
     print(f"{len(preds.correct)} queries, languages: {', '.join(args.languages)}\n")
-    header = ["router", "AvgAcc", *args.languages, "Gain@B", "Gap@O", "Cost $", "OSR"]
-    print(" | ".join(f"{h:>12}" for h in header))
+    rows = []
     for name, res in report.items():
         per_group = res["Acc_per_group"]
         assert isinstance(per_group, dict)
-        cells = [
-            name,
-            f"{res['AvgAcc']:.3f}",
-            *(f"{per_group[lang]:.3f}" for lang in args.languages),
-            f"{res['Gain@B']:+.3f}",
-            f"{res['Gap@O']:.3f}",
-            f"{res['Cost']:.4f}",
-            f"{res['OptimalSelectionRatio']:.3f}",
-        ]
-        print(" | ".join(f"{c:>12}" for c in cells))
+        rows.append(
+            [
+                name,
+                f"{res['AvgAcc']:.3f}",
+                *(f"{per_group[lang]:.3f}" for lang in args.languages),
+                f"{res['Gain@B']:+.3f}",
+                f"{res['Gap@O']:.3f}",
+                f"{res['Cost']:.4f}",
+                f"{res['OptimalSelectionRatio']:.3f}",
+            ]
+        )
+    _print_table(
+        ["router", "AvgAcc", *args.languages, "Gain@B", "Gap@O", "Cost $", "OSR"], rows
+    )
+
+    print(
+        "\nCost-quality trade-off (learned routers: threshold sweep; "
+        "rules: single point mixed with the two models)"
+    )
+    _print_table(
+        [
+            "router",
+            "AIQ",
+            "GapClosed",
+            "Acc@Budget",
+            "PerfGain",
+            "CostSave",
+            "ParetoDist",
+            "Entropy",
+        ],
+        [
+            [
+                name,
+                f"{r['AIQ']:.3f}",
+                f"{r['GapClosed']:.3f}",
+                f"{r['Acc@Budget']:.3f}",
+                f"{r['PerfGain']:+.3f}",
+                f"{r['CostSave']:.3f}",
+                f"{r['ParetoDist']:.3f}",
+                f"{r['SelectionEntropy']:.3f}",
+            ]
+            for name, r in report.items()
+        ],
+    )
+    print("Acc@Budget: accuracy reachable at the cost of language_rule")
 
 
 if __name__ == "__main__":
