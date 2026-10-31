@@ -70,12 +70,10 @@ class RouterData:
 
 
 def split_prompt(formatted_prompt: str) -> tuple[str, str]:
-    """Passage and question (with options) without the language-specific template.
-
-    The prompt from ``src/data.py`` consists of instruction, passage, question with
-    options and answer instruction, separated by blank lines. Only the middle two
-    blocks are kept and their labels (e.g. "Passage:" / "Kifungu:") are removed.
+    """Strips boilerplate template instructions and labels (e.g., 'Passage:', 'Kifungu:'),
+    returning only the raw passage and the multiple-choice question blocks.
     """
+    
     blocks = formatted_prompt.replace("\r\n", "\n").split("\n\n")
     if len(blocks) < 4:
         raise ValueError("unexpected prompt format")
@@ -84,13 +82,17 @@ def split_prompt(formatted_prompt: str) -> tuple[str, str]:
 
 
 def oracle_labels(correct: ev.Matrix) -> np.ndarray:
-    """1 where the oracle picks the big model (small wrong, big right), else 0."""
+    """Generates binary target labels: 1 if the small model failed but the big
+    model succeeded (routing needed), and 0 otherwise.
+    """
     return np.array([int(not small and bool(big)) for small, big in correct])
 
 
-def load_router_data(
-    data_dir: Path = ev.DATA_DIR, languages: Sequence[str] = ev.LANGUAGES
-) -> RouterData:
+def load_router_data(data_dir: Path = ev.DATA_DIR, languages: Sequence[str] = ev.LANGUAGES) -> RouterData:
+    """Loads benchmark prompts and model predictions, joins them across languages,
+    and constructs the RouterData container with cleaned texts and oracle labels.
+    """
+
     preds = ev.load_predictions(data_dir, languages)
     prompts: dict[tuple[str, str], str] = {}
     for lang in languages:
@@ -115,14 +117,11 @@ def load_router_data(
 # ---------------------------------------------------------------------------
 
 
-def embed(
-    data: RouterData, cache: Path = EMBEDDINGS_FILE, model_name: str = EMBEDDING_MODEL
-) -> np.ndarray:
-    """Concatenated passage and question embeddings, cached on disk.
-
-    Computing them needs ``sentence-transformers`` and downloads the model once;
-    afterwards (and in CI) the committed cache file is used.
+def embed(data: RouterData, cache: Path = EMBEDDINGS_FILE, model_name: str = EMBEDDING_MODEL) -> np.ndarray:
+    """Extracts or loads cached multilingual sentence embeddings for passages and
+    questions separately, concatenating them into normalized 768-d vectors.
     """
+
     keys = data.keys
     if cache.exists():
         stored = np.load(cache)
@@ -145,15 +144,19 @@ def embed(
 
 
 def standardise(X: np.ndarray) -> np.ndarray:
-    """Zero mean, unit variance per feature (constant features are left at 0)."""
+    """Standardizes features to zero mean and unit variance per column, keeping
+    constant features at zero to avoid division by zero.
+    """
+
     std = X.std(axis=0)
     return (X - X.mean(axis=0)) / np.where(std > 0, std, 1.0)
 
 
-def language_probe_accuracy(
-    X: np.ndarray, groups: Sequence[str], question_ids: Sequence[str]
-) -> float:
-    """How well a linear classifier recovers the language (grouped 5-fold CV)."""
+def language_probe_accuracy(X: np.ndarray, groups: Sequence[str], question_ids: Sequence[str]) -> float:
+    """Evaluates via grouped 5-fold cross-validation how accurately a linear
+    logistic regression probe can identify the query language from feature vectors.
+    """
+    
     probe = LogisticRegression(max_iter=3000)
     splits = GroupKFold(n_splits=N_FOLDS).split(X, groups, question_ids)
     scores = [
@@ -165,22 +168,11 @@ def language_probe_accuracy(
     return float(np.mean(scores))
 
 
-def remove_language(
-    X: np.ndarray,
-    groups: Sequence[str],
-    question_ids: Sequence[str],
-    target: float = 0.55,
-    max_iter: int = 200,
-    check_every: int = 5,
-) -> np.ndarray:
-    """Iterative nullspace projection (Ravfogel et al., 2020) of the language.
-
-    Multilingual embeddings still encode the language almost perfectly, which would
-    let the "blind" router see it. Repeatedly train a linear language classifier
-    and project its direction out of the features until a probe recovers the
-    language at most with accuracy ``target`` (chance is 0.5 for two languages).
-    Only language labels are used, never the routing labels.
+def remove_language(X: np.ndarray, groups: Sequence[str], question_ids: Sequence[str], target: float = 0.55, max_iter: int = 200, check_every: int = 5,) -> np.ndarray:
+    """Iteratively projects out linear language-separating directions (INLP) until
+    the classification probe accuracy drops to near random chance (<= 55%).
     """
+
     X = X.copy()
     y = np.array(groups)
     for i in range(1, max_iter + 1):
@@ -199,13 +191,17 @@ def remove_language(
 
 
 def language_one_hot(groups: Sequence[str], languages: Sequence[str]) -> np.ndarray:
+    """Encodes the language identifier into standard one-hot binary indicator vectors."""
+
     return np.array([[float(g == lang) for lang in languages] for g in groups])
 
 
-def router_features(
-    content: np.ndarray, groups: Sequence[str], aware: bool
-) -> np.ndarray:
-    """Language-free content features (blind), plus the language (aware)."""
+def router_features(content: np.ndarray, groups: Sequence[str], aware: bool) -> np.ndarray:
+    """Builds final input features: pure de-biased content features for the blind
+    router, or content features concatenated with standardized one-hot language
+    indicators for the aware router.
+    """
+    
     if not aware:
         return content
     one_hot = standardise(language_one_hot(groups, sorted(set(groups))))
@@ -217,17 +213,9 @@ def router_features(
 # ---------------------------------------------------------------------------
 
 
-def choose_threshold(
-    p_big: np.ndarray,
-    correct: ev.Matrix,
-    costs: ev.Matrix,
-    groups: Sequence[str],
-    thresholds: Sequence[float] = tuple(THRESHOLDS),
-) -> float:
-    """Cheapest threshold whose accuracy reaches the always-big baseline.
-
-    This is the operating point behind CostSave. Threshold 0 sends everything to the
-    big model, so a solution always exists; on ties the highest threshold wins.
+def choose_threshold(p_big: np.ndarray, correct: ev.Matrix, costs: ev.Matrix, groups: Sequence[str], thresholds: Sequence[float] = tuple(THRESHOLDS)) -> float:
+    """Finds the lowest-cost probability threshold theta that maintains at least
+    the accuracy of the 'always_big' baseline on the training fold.
     """
 
     def evaluate(selected: list[int]) -> tuple[float, float]:
@@ -260,22 +248,17 @@ class RouterResult:
 
 
 def _subset(matrix: ev.Matrix, idx: np.ndarray) -> list[list[float]]:
+    """Extracts rows from a nested list matrix corresponding to the specified row indices."""
+
     return [list(matrix[i]) for i in idx]
 
 
-def cross_validate(
-    X: np.ndarray,
-    data: RouterData,
-    n_folds: int = N_FOLDS,
-    c_grid: Sequence[float] = tuple(C_GRID),
-) -> RouterResult:
-    """Nested, question-grouped cross-validation of a logistic-regression router.
-
-    For every outer fold the regularisation strength is chosen by an inner grouped
-    cross-validation on the training part, and the routing threshold is chosen on
-    out-of-fold probabilities of that training part. The test fold is only used
-    for the final prediction.
+def cross_validate(X: np.ndarray, data: RouterData, n_folds: int = N_FOLDS, c_grid: Sequence[float] = tuple(C_GRID),) -> RouterResult:
+    """Performs nested, question-grouped cross-validation to select L2
+    regularization (C) and decision thresholds (theta) out-of-fold, returning
+    unbiased test-fold probabilities and predictions.
     """
+
     y = data.labels
     groups = np.array(data.preds.question_ids)
     langs = data.preds.groups
@@ -310,11 +293,10 @@ def cross_validate(
 
 
 def length_features(data: RouterData) -> np.ndarray:
-    """Log character and word counts of passage and question.
-
-    The embeddings are normalised and carry no length information, but longer
-    questions and options tend to be harder for the small model.
+    """Computes log-transformed character and word counts for both the passage and
+    the question to capture prompt length as a proxy for complexity.
     """
+
     return np.log1p(
         np.array(
             [
@@ -326,17 +308,11 @@ def length_features(data: RouterData) -> np.ndarray:
     )
 
 
-def content_features(
-    data: RouterData, embeddings: np.ndarray, n_components: int = N_COMPONENTS
-) -> np.ndarray:
-    """Compressed embeddings and lengths with the language projected out.
-
-    PCA keeps the strongest directions of the 768 embedding dimensions, so the few
-    length features are not drowned out and the language can be removed more
-    completely. Lengths also differ between languages and therefore go through the
-    same projection. PCA, scaling and the projection use no routing labels, so
-    computing them on all queries does not leak test information.
+def content_features(data: RouterData, embeddings: np.ndarray, n_components: int = N_COMPONENTS) -> np.ndarray:
+    """Reduces embedding dimensionality to 32 components via PCA, combines them
+    with scaled length features, and removes linear language signals via INLP.
     """
+    
     groups, qids = data.preds.groups, data.preds.question_ids
     n_components = min(n_components, *embeddings.shape)
     compressed = PCA(n_components, random_state=0).fit_transform(embeddings)
@@ -345,7 +321,10 @@ def content_features(
 
 
 def train_routers(data: RouterData, content: np.ndarray) -> dict[str, RouterResult]:
-    """Out-of-fold predictions of the blind and the aware router."""
+    """Runs nested cross-validation to generate full out-of-fold routing
+    predictions for both the language-blind and language-aware routers.
+    """
+
     return {
         name: cross_validate(
             router_features(content, data.preds.groups, name == "aware"), data
@@ -359,9 +338,11 @@ def train_routers(data: RouterData, content: np.ndarray) -> dict[str, RouterResu
 # ---------------------------------------------------------------------------
 
 
-def write_predictions(
-    data: RouterData, results: dict[str, RouterResult], path: Path = ROUTER_FILE
-) -> None:
+def write_predictions(data: RouterData, results: dict[str, RouterResult], path: Path = ROUTER_FILE) -> None:
+    """Saves query metadata, oracle labels, fold assignments, predicted
+    probabilities, and fold-specific thresholds to router_predictions.csv.
+    """
+
     fields = ["question_id", "language", "label", "fold"]
     for name in results:
         fields += [f"p_big_{name}", f"theta_{name}"]
@@ -379,7 +360,10 @@ def write_predictions(
 
 
 def auc_summary(data: RouterData, results: dict[str, RouterResult]) -> None:
-    """ROC-AUC of p_big against the oracle label, overall and per language."""
+    """Calculates and prints out-of-fold ROC-AUC scores of predicted probabilities
+    against oracle labels, broken down globally and per language.
+    """
+
     langs = np.array(data.preds.groups)
     subsets = {"all": np.ones(len(langs), dtype=bool)}
     subsets.update({lang: langs == lang for lang in sorted(set(langs))})
@@ -394,6 +378,10 @@ def auc_summary(data: RouterData, results: dict[str, RouterResult]) -> None:
 
 
 def main() -> None:
+    """Coordinates data loading, feature engineering, router training, prediction
+    export, and diagnostic reporting from the CLI.
+    """
+
     parser = argparse.ArgumentParser(description="Train the routers out-of-fold.")
     parser.add_argument("--data-dir", type=Path, default=ev.DATA_DIR)
     parser.add_argument("--languages", nargs="+", default=list(ev.LANGUAGES))

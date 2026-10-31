@@ -1,18 +1,34 @@
-"""Evaluation pipeline for the language-aware router.
+"""Evaluation and benchmarking pipeline for language-aware and language-blind LLM routers.
 
-Implements the metrics from ``docs/metrics.md`` (LLMRouterBench)
-plus two diagnostics from the literature review (Optimal Selection Ratio from
-RouterArena, classification entropy from RouterEval).
+Computes a comprehensive suite of routing metrics across four established literature frameworks:
+1. LLMRouterBench: Group-balanced accuracy (AvgAcc), relative gain over the best single model
+   (Gain@B), relative gain over random routing (Gain@R), and relative accuracy gap to the
+   hindsight oracle (Gap@O).
+2. Diagnostic metrics: Optimal Selection Ratio (OSR from RouterArena), selection distribution
+   entropy (bias detector from RouterEval), and ranking quality (Recall@k).
+3. Performance-cost trade-offs (RouterBench): Probability threshold sweeps (theta in [0, 1]),
+   non-decreasing convex hull (NDCH) construction, Area under the Hull / Average Incremental
+   Quality (AIQ), cost savings at parity accuracy (CostSave), peak accuracy gain (PerfGain),
+   and L1 distance to the Pareto frontier (ParetoDist).
+4. Cross-router comparative metrics: Relative performance gap closed toward the oracle
+   (GapClosed), and accuracy reachable at a fixed reference budget (Acc@Budget, matched
+   to the inference cost of the deterministic language rule).
 
-Data conventions (one row per query, one column per candidate model):
+Data conventions (one row per query, one column per candidate model: 0 = small, 1 = big):
+- ``correct[q][m]``  -- Binary indicator (1.0/0.0) whether candidate model ``m`` answered query ``q`` correctly.
+- ``costs[q][m]``    -- Query inference cost in USD for model ``m`` on query ``q``, computed from token prices.
+- ``selected[q]``    -- Integer index (0 or 1) of the model selected by the router for query ``q``.
+- ``groups[q]``      -- Subset/demographic label of query ``q`` (language identifier, e.g. "en" or "sw").
+- ``scores[q][m]``   -- Estimated router confidence/probability score for model ``m`` on query ``q``.
 
-* ``correct[q][m]``  -- 1/0, whether model ``m`` answered query ``q`` correctly
-* ``costs[q][m]``    -- inference cost of model ``m`` on query ``q``
-* ``selected[q]``    -- index of the model the router picked for query ``q``
-* ``groups[q]``      -- subset label of query ``q`` (here: the language), i.e. ``d`` in ``D``
-* ``scores[q][m]``   -- router score for model ``m`` on query ``q`` (higher = better)
+Pipeline execution:
+- Loads per-query LLM completions (prompt/completion tokens and correctness) for small and big models.
+- Evaluates four reference baselines: always_small, always_big, language_rule, and oracle.
+- Evaluates learned routers at their fold-selected operating point (theta) and across a 101-point threshold sweep.
+- Computes convex hull interpolations, AIQ integrations, and budget-matched metrics.
+- Exports all scalar results to ``src/data/evaluation_results.csv`` and prints formatted summary tables.
 
-Everything is plain Python so that the module has no dependencies.
+Implemented in plain Python using only the standard library (no external dependencies).
 """
 
 from __future__ import annotations
