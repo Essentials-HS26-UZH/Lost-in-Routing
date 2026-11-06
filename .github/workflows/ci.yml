@@ -13,7 +13,7 @@ jobs:
           python-version: "3.12"
       - run: |
           pip install --upgrade pip
-          pip install pytest pandas datasets openai python-dotenv
+          pip install pytest pandas datasets openai python-dotenv numpy scikit-learn
       - run: pytest
 
   ruff:
@@ -37,5 +37,5 @@ jobs:
           python-version: "3.12"
       - run: |
           pip install --upgrade pip
-          pip install mypy openai python-dotenv
+          pip install mypy openai python-dotenv numpy scikit-learn
       - run: mypy src

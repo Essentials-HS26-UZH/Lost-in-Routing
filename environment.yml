@@ -16,6 +16,7 @@ dependencies:
   - pip
   - pip:
       - transformers
+      - sentence-transformers
       - datasets
       - accelerate
       - mypy

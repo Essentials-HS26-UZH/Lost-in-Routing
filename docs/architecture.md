@@ -98,16 +98,26 @@ predictions from both models.
 ### Usage
 
 ```bash
-python src/router.py
+python src/router.py [--data-dir src/data] [--languages en sw] [--output src/data/router_predictions.csv]
 ```
 
 ### Functionality
-
+* **Routing Label:** A query needs the big model when the small model answers wrongly and the big model correctly. This is exactly the choice of the hindsight oracle in `src/evaluation.py`; if both models fail, the cheap model is just as good.
+* **Router Output:** Each router predicts `p_big`, the probability that the big model is needed. A query is routed to the big model when `p_big >= theta`.
+* **Content Features:** The language-specific prompt template (instruction, labels such as "Passage:"/"Kifungu:", answer instruction) is removed. Passage and question with options are embedded separately with the multilingual sentence encoder `paraphrase-multilingual-MiniLM-L12-v2`, compressed to 32 dimensions with PCA and complemented with log character and word counts.
+* **Removing the Language:** Multilingual embeddings still encode the language almost perfectly (a linear probe recovers it with 99.9% accuracy). Iterative nullspace projection (Ravfogel et al., 2020) repeatedly trains a linear language classifier and projects its direction out of the features until the probe is at chance level. Only language labels are used, never routing labels.
+* **Language-Blind Router (#23):** Logistic regression on the language-free content features.
+* **Language-Aware Router (#24):** The same logistic regression on the same features plus a one-hot encoding of the language. The language is the only difference between the two routers.
+* **Training and Testing:** All predictions are out-of-fold. A 5-fold cross-validation grouped by `question_id` keeps the English and Swahili version of a question in the same fold. Within each training part, an inner grouped cross-validation chooses the L2 regularisation strength (by log loss) and the routing threshold.
+* **Routing Threshold:** `theta` is the cheapest threshold whose accuracy on the training part reaches the always-big baseline (the operating point behind CostSave). Threshold 0 routes everything to the big model, so a valid threshold always exists. The evaluation additionally sweeps `theta` from 0 to 1.
+* **Embedding Cache:** Computing the embeddings needs `sentence-transformers` and downloads the encoder once. The vectors are stored in `src/data/embeddings_multilingual_minilm.npz` together with the query keys and model name, so later runs (and CI) do not need the encoder.
 
 ### Output
-
+* `src/data/router_predictions.csv` with `question_id`, `language`, `label`, `fold` and, per router, `p_big_<router>` and `theta_<router>`.
+* The console shows the language probe accuracy before and after removing the language and the ROC-AUC of `p_big` against the label, overall and per language.
 
 ### Pipeline Integration
+The router needs the processed Belebele CSVs (for the texts) and the prediction CSVs of both models (for the labels). Its output is read by `src/evaluation.py`, which compares the routers with the baselines.
 
 ## 4. Evaluation
 ### File
@@ -123,16 +133,23 @@ python src/evaluation.py [--data-dir src/data] [--languages en sw]
 ### Functionality
 * **Metric Suite:** Implements all metrics from `docs/metrics.md` (AvgAcc, Gain@B, Gain@R, Gap@O, PerfGain, CostSave, ParetoDist, Recall@k) plus two diagnostics from the literature review: the Optimal Selection Ratio (RouterArena) and the entropy of the routing distribution (RouterEval). The metrics only use the Python standard library.
 * **Data Convention:** Every metric works on per-query matrices with one column per candidate model (`0 = small`, `1 = big`): `correct[q][m]` (1/0), `costs[q][m]` (USD), the router's choice `selected[q]` and the subset label `groups[q]` (the language). Accuracies are first computed per language and then averaged, so each language counts equally.
-* **Baselines:** The Best Single Model B, the hindsight Oracle O (cheapest correct model per query) and the Random Router R are derived from `correct` and `costs`.
+* **Baselines:** The Best Single Model B, the hindsight Oracle O (cheapest correct model per query) and the Random Router R are derived from `correct` and `costs`. The report also contains `always_small`, `always_big` and a `language_rule` that sends every low-resource (Swahili) query to the big model. A learned language-aware router has to beat this rule to show that it uses more than the language itself.
+* **Cost-Quality Curve:** Following RouterBench, `ndch` builds the non-decreasing convex hull of all (accuracy, cost) operating points; choosing between two points at random reaches every point in between. `AIQ` is the mean accuracy of this hull over the cost range from always small to always big. `GapClosed = (AIQ(a) - AIQ(B)) / (AIQ(O) - AIQ(B))` is the share of the gap between the single models and the oracle that a router closes, which directly answers the research question. `Acc@Budget` is the accuracy a router reaches at the cost of the language rule. Fixed rules are a single operating point and are mixed with the two models.
+* **Learned Routers:** `load_router_predictions` reads the output of `src/router.py`; `router_report` evaluates every router at its chosen threshold and sweeps the threshold from 0 to 1 for PerfGain, CostSave, ParetoDist and AIQ.
 * **Loading Predictions:** `load_predictions` joins `prediction_{lang}_small.csv` and `prediction_{lang}_big.csv` by `question_id` and raises an error if the two models do not cover the same questions.
 * **Costs:** The cost of a query is computed from `prompt_tokens` and `completion_tokens` with the same prices as in `analysis.ipynb` (USD per 1M tokens: small 0.02 input / 0.04 output, big 0.40 / 0.40).
 * **Entry Point:** `evaluate_router(correct, costs, selected, groups, ...)` returns the full metric dictionary for one router. Passing `scores` enables Recall@k and passing `sweep_selected` (one selection per threshold) enables the cost trade-off metrics.
 
 ### Output
-Running the script prints a table with AvgAcc, accuracy per language, Gain@B, Gap@O, total cost and Optimal Selection Ratio for the baselines `always_small`, `always_big` and `oracle`. No files are written.
+Running the script prints two tables for the baselines and, if `src/data/router_predictions.csv` exists, the learned routers:
+
+* AvgAcc, accuracy per language, Gain@B, Gap@O, total cost and Optimal Selection Ratio at the chosen operating point.
+* The cost-quality trade-off: AIQ, GapClosed, Acc@Budget, PerfGain, CostSave, ParetoDist and the selection entropy.
+
+All scalar metrics are also written to `src/data/evaluation_results.csv` (one row per router) for the analysis notebook.
 
 ### Pipeline Integration
-The evaluation consumes the prediction files written by `src/model.py`. As long as `src/router.py` is not implemented, the script only evaluates the baselines. Once the router produces a model choice per query, its selections are passed to `evaluate_router` together with the matrices from `load_predictions`.
+The evaluation consumes the prediction files written by `src/model.py` and the router predictions written by `src/router.py`. Without router predictions it evaluates only the baselines.
 
 ## 5. Analysis
 ### File

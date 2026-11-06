@@ -125,7 +125,74 @@ def test_load_predictions_rejects_missing_questions(tmp_path):
 def test_baseline_report():
     preds = ev.Predictions(["q_0", "q_1", "q_2", "q_3"], GROUPS, CORRECT, COSTS)
     report = ev.baseline_report(preds)
-    assert set(report) == {"always_small", "always_big", "oracle"}
+    assert set(report) == {"always_small", "always_big", "language_rule", "oracle"}
     assert report["oracle"]["Gap@O"] == pytest.approx(0.0)
     assert report["always_big"]["Gain@B"] == pytest.approx(0.0)
     assert report["always_small"]["Cost"] == pytest.approx(4.0)
+    # language rule: en -> small, sw -> big
+    assert report["language_rule"]["Acc_per_group"] == {"en": 0.5, "sw": 0.5}
+    assert report["language_rule"]["Cost"] == pytest.approx(1 + 1 + 10 + 10)
+    # single models mixed at random: line from (4, 0.25) to (40, 0.75)
+    assert report["always_big"]["AIQ"] == pytest.approx(0.5)
+
+
+def test_ndch_drops_points_below_the_hull():
+    points = [(0.25, 4.0), (0.75, 40.0), (0.5, 22.0), (0.2, 30.0)]
+    assert ev.ndch(points) == [(0.25, 4.0), (0.75, 40.0)]
+    assert ev.ndch(points + [(0.7, 10.0)]) == [(0.25, 4.0), (0.7, 10.0), (0.75, 40.0)]
+
+
+def test_accuracy_at_cost():
+    hull = [(0.25, 4.0), (0.7, 10.0), (0.75, 40.0)]
+    assert ev.accuracy_at_cost(hull, 7.0) == pytest.approx(0.475)
+    assert ev.accuracy_at_cost(hull, 50.0) == pytest.approx(0.75)
+    assert math.isnan(ev.accuracy_at_cost(hull, 2.0))
+
+
+def test_aiq():
+    hull = [(0.25, 4.0), (0.7, 10.0), (0.75, 40.0)]
+    area = (0.25 + 0.7) / 2 * 6 + (0.7 + 0.75) / 2 * 30
+    assert ev.aiq(hull, 4.0, 40.0) == pytest.approx(area / 36)
+    # costs below the cheapest point are unreachable and count as 0
+    assert ev.aiq([(0.5, 10.0), (0.75, 40.0)], 4.0, 40.0) == pytest.approx(18.75 / 36)
+
+
+def test_gap_closed_and_budget_accuracy():
+    preds = ev.Predictions(["q_0", "q_1", "q_2", "q_3"], GROUPS, CORRECT, COSTS)
+    report = ev.baseline_report(preds)
+    ev.add_gap_closed(report)
+    ev.add_budget_accuracy(report)
+    assert report["oracle"]["GapClosed"] == pytest.approx(1.0)
+    assert report["always_big"]["GapClosed"] == pytest.approx(0.0)
+    # the rule lies on the single-model line, so it closes nothing
+    assert report["language_rule"]["GapClosed"] == pytest.approx(0.0)
+    assert report["language_rule"]["Acc@Budget"] == pytest.approx(0.5)
+
+
+def test_router_report_and_loading(tmp_path):
+    preds = ev.Predictions(["q_0", "q_1", "q_0", "q_1"], GROUPS, CORRECT, COSTS)
+    path = tmp_path / "router_predictions.csv"
+    path.write_text(
+        "question_id,language,label,fold,p_big_x,theta_x\n"
+        "q_1,sw,0,0,0.1,0.5\n"  # rows in a different order than preds
+        "q_0,en,0,0,0.2,0.5\n"
+        "q_1,en,1,1,0.9,0.5\n"
+        "q_0,sw,1,1,0.8,0.5\n",
+        encoding="utf-8",
+    )
+    routers = ev.load_router_predictions(preds, path)
+    assert routers["x"].p_big == [0.2, 0.9, 0.8, 0.1]
+
+    report = ev.router_report(preds, routers)
+    res = report["router_x"]
+    assert res["Gap@O"] == pytest.approx(0.0)  # it routes exactly like the oracle
+    assert res["Recall@1"] == pytest.approx(0.75)
+    assert res["CostSave"] == pytest.approx(1 - 22.0 / 40.0)
+
+
+def test_load_router_predictions_rejects_missing_queries(tmp_path):
+    preds = ev.Predictions(["q_0", "q_1", "q_0", "q_1"], GROUPS, CORRECT, COSTS)
+    path = tmp_path / "router_predictions.csv"
+    path.write_text("question_id,language,p_big_x,theta_x\nq_0,en,0.5,0.5\n")
+    with pytest.raises(ValueError):
+        ev.load_router_predictions(preds, path)
