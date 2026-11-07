@@ -1,6 +1,6 @@
 # Language-Aware LLM Routing: Project Decisions
 
-> In this file, we can document our key decisions for the project. The current recommendations should be discussed and may be changed.
+> In this file, we document our key decisions for the project.
 
 ## 1. Datasets (Multilingual & Deterministic)
 
@@ -24,7 +24,7 @@ First Iteration:
 
 Potential Second Iteration:
 
-* there are many options for additional high and low resource languages in BeleBele, we could just choose two.
+* there are many options for additional high and low resource languages in BeleBele, we could just choose two additional languages.
 
 ## 3. Model Selection (Same-family to isolate scale)
 
@@ -36,16 +36,9 @@ Alternative:
 
 * **Qwen2.5 Family** (`Qwen2.5-7B-Instruct` & `Qwen2.5-72B-Instruct`). Currently holds state-of-the-art open-weight performance for multilingual tasks.
 
-Open Question:
-
-* Where can we run the big model (70B)?
-  * Potential Solution: Running the models through an API with caching outputs (find provider!)
-  * Alternative: Get access to GPU cluster at university (Sina checks this)
-
-
 ## 4. Evaluation Metrics
 
-*Reference: Metrics are formalized based on "LLMRouterBench-metrics-suite.md".*
+*Reference: Metrics are formalized based on `metrics.md`*
 
 To evaluate the language-aware router against baselines like the Best Single Model (B), Random Router (R), and the hindsight Oracle (O), we will track the following core metrics:
 
@@ -62,3 +55,7 @@ To evaluate the language-aware router against baselines like the Best Single Mod
 
 * **Diagnostic Metrics:**
   * **$\text{Recall@k}$:** Evaluates whether a correct candidate model is successfully ranked within the top-$k$ predictions by the router.
+
+* **Cross-Router Comparative Metrics:**
+  * **Relative Gap Closed ($\text{GapClosed}$):** The proportion of the accuracy headroom between the Best Single Model ($B$) and the hindsight Oracle ($O$) successfully captured by the router (ideal value is $100\%$).
+  * **Accuracy at Reference Budget ($\text{Acc@Budget}$):** The maximum accuracy achievable by the router under a constrained inference cost budget $C_{\text{ref}}$ (matched to the operating cost of the deterministic language rule).

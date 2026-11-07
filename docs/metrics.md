@@ -1,6 +1,6 @@
 # LLM Router Evaluation Metrics Suite
 
-> **Source Reference:** Formalized based on **LLMRouterBench** (*Yuli et al., 2025* / *LLMRouterBench.pdf*).
+> **Source Reference:** Formalized based on **LLMRouterBench** (*Yuli et al., 2025* / *LLMRouterBench.pdf*) and **RouterBench** (*Hu et al., 2024* / *RouterBench*)
 
 ## 1. Overview & Notation
 
@@ -81,14 +81,37 @@ In a performance-cost routing configuration, the router $a$ possesses a tunable 
 
 ---
 
-## 5. Summary Table
+## 5. Cross-Router Comparative Metrics
+
+These metrics evaluate router efficacy either in comparison to theoretical bounds across threshold sweeps or under explicit operational cost constraints.
+
+### 5.1 Relative Gap Closed ($\text{GapClosed}$)
+- **Description:** Measures the proportion of the performance headroom between the Best Single Model ($B$) and the theoretical maximum of the Oracle ($O$) that is successfully captured by router $a$. A value of $1.0$ ($100\%$) indicates parity with the Oracle, $0.0$ indicates parity with the best single model, and negative values indicate performance degradation below $B$.
+- **Formula:**
+  $$\text{GapClosed} = \frac{\text{AvgAcc}(a) - \text{AvgAcc}(B)}{\text{AvgAcc}(O) - \text{AvgAcc}(B)}$$
+  *(For a probability threshold sweep $\theta \in \Theta$, this is evaluated either at a target operating threshold $\theta$ or at the peak-accuracy setting $\theta^* = \arg\max_{\theta \in \Theta} \text{AvgAcc}(\theta)$).*
+- **Computation:** Compute the accuracy difference between the router and the Best Single Model, then divide by the total available margin between the Oracle and the Best Single Model.
+
+### 5.2 Accuracy at Reference Budget ($\text{Acc@Budget}$)
+- **Description:** Measures the maximum accuracy achieved by the router when constrained to an inference expenditure that does not exceed a predetermined reference budget $C_{\text{ref}}$ (such as the empirical cost of a deterministic language rule or baseline routing heuristic).
+- **Formula:**
+  $$\text{Acc@Budget} = \max_{\theta \in \Theta} \text{AvgAcc}(\theta) \quad \text{s.t.} \quad \text{Cost}(\theta) \le C_{\text{ref}}$$
+  *(Alternatively, if operating over a continuous non-decreasing convex hull (NDCH), evaluate the interpolated accuracy directly at $C = C_{\text{ref}}$).*
+- **Computation:** Sweep across threshold parameters $\theta \in \Theta$, filter for candidate operating points whose aggregate cost satisfies $\text{Cost}(\theta) \le C_{\text{ref}}$, and select the maximum accuracy attained within that budget boundary.
+
+---
+
+## 6. Summary Table
 
 | Metric | Category | Primary Goal | Baseline Benchmark | Ideal Value |
 | :--- | :--- | :--- | :--- | :--- |
 | **$\text{AvgAcc}$** | Performance | Measure overall accuracy | Mean accuracy | $100\%$ |
 | **$\text{Gain@B}$** | Performance | Relative gain over Large Model | Best Single Model ($B$) | $> 0\%$ |
+| **$\text{Gain@R}$** | Performance | Relative gain over random choice | Random Router ($R$) | $> 0\%$ |
 | **$\text{Gap@O}$** | Performance | Distance to theoretical limit | Hindsight Oracle ($O$) | $0\%$ |
 | **$\text{PerfGain}$** | Cost-Tradeoff | Peak accuracy improvement | Best Single Model ($B$) | Maximize |
 | **$\text{CostSave}$** | Cost-Tradeoff | Max cost savings at equal accuracy | Best Single Model ($B$) | Maximize ($1.0$) |
 | **$\text{ParetoDist}$** | Cost-Tradeoff | Proximity to optimal Pareto curve | Empirical Pareto Frontier ($P$) | $0.0$ |
 | **$\text{Recall@k}$** | Diagnostic | Identify model-recall failures | Correct Model Set $C(q)$ | $1.0$ |
+| **$\text{GapClosed}$** | Comparative | Headroom closed toward Oracle | Best Single ($B$) & Oracle ($O$) | $1.0$ ($100\%$) |
+| **$\text{Acc@Budget}$** | Comparative | Reachable accuracy at fixed budget | Reference Budget ($C_{\text{ref}}$) | Maximize / $\text{Acc}(O)$ |
