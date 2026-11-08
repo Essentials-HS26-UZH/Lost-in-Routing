@@ -1,0 +1,1 @@
+"""Mark src/ as a Python package for imports such as ``from src import ...``."""
