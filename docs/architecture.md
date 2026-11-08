@@ -158,5 +158,8 @@ The evaluation consumes the prediction files written by `src/model.py` and the r
 
 ### Functionality
 
+Loads the model predictions, router predictions, and evaluation results from `src/data/`, then compares the blind and language-aware routers across languages. It produces summary tables, calibration plots, and cost-quality trade-off visualizations, including the selected operating points and random-mixing baseline.
 
 ### Output
+
+The notebook displays the rendered tables and figures used to interpret router accuracy, cost, language-specific behavior, and the trade-off between performance and spending.
