@@ -22,7 +22,6 @@ conda env update -f environment.yml --prune
 
 ```
 
-
 ### Quality Assurance & Workflow
 
 Every pull request enforces strict continuous integration (`.github/workflows/ci.yml`):
@@ -202,6 +201,61 @@ Decoupling the routers from a single threshold via RouterBench's Non-Decreasing 
     └── test_router.py            # Unit tests for INLP, leakage guards, feature pipelines
 
 ```
+---
+
+## Reproducibility
+
+The reference run used Python **3.12.15** and these installed dependencies:
+
+| Package | Version |
+| --- | --- |
+| `numpy` | 2.5.4 |
+| `pandas` | 3.1.0 |
+| `scipy` | 1.18.1 |
+| `scikit-learn` | 1.9.1 |
+| `matplotlib` | 3.11.2 |
+| `seaborn` | 0.13.2 |
+| `datasets` | 5.1.0 |
+| `transformers` | 5.20.2 |
+| `accelerate` | 1.15.0 |
+| `openai` | 3.37.0 |
+| `python-dotenv` | 1.2.4 |
+| `pytest` | 9.1.1 |
+| `ruff` | 0.17.2 |
+| `mypy` | 2.4.0 |
+| `jupyter` | 1.1.1 |
+
+The run used `facebook/belebele`, `llama3.1:8b`, and
+`meta-llama/llama-3.1-70b-instruct`.
+
+Set `OPENROUTER_API_KEY` in `.env` and run Ollama with `llama3.1:8b` before
+model inference. Cached responses in `src/data/cache_*.jsonl` can be reused.
+Recreate the environment and run the pipeline from the repository root:
+
+```bash
+# 1. Create and activate the Conda environment
+conda env create -f environment.yml
+conda activate router
+
+# 2. Download and preprocess the Belebele data
+python src/data.py
+
+# 3. Run the small and large models to create cached predictions
+python src/model.py --which small --input src/data/belebele_en_processed.csv src/data/belebele_sw_processed.csv
+python src/model.py --which big --input src/data/belebele_en_processed.csv src/data/belebele_sw_processed.csv
+
+# 4. Train the language-blind and language-aware routers
+python src/router.py
+
+# 5. Evaluate the baselines and trained routers
+python src/evaluation.py
+
+# 6. Open the notebook to reproduce the analysis and plots
+jupyter notebook src/analysis.ipynb
+```
+
+Despite `temperature=0`, AI responses are not deterministic; reruns may produce
+different predictions and results.
 
 ---
 
